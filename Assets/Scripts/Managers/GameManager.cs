@@ -12,6 +12,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameState gameState;
 
     /// <summary>
+    /// Property of the field of current game state.
+    /// </summary>
+    public GameState GameState
+    {
+        get { return this.gameState; }
+    }
+
+    /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     private void Awake()
@@ -21,13 +29,25 @@ public class GameManager : Singleton<GameManager>
     }
 
     /// <summary>
-    /// 
+    /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     private void Update()
     {
         if (this.gameState == GameState.MainMenu && !SceneManager.Instance.IsCurrentScene("Main Menu"))
         {
             SceneManager.Instance.LoadScene("Main Menu");
+            return;
+        }
+
+        if (this.gameState == GameState.Gameplay && !SceneManager.Instance.IsCurrentScene("Game"))
+        {
+            SceneManager.Instance.LoadScene("Game");
+            return;
+        }
+
+        if (this.gameState == GameState.Pause && SceneManager.Instance.IsCurrentScene("Game"))
+        {
+            PauseGame();
         }
     }
 
@@ -38,5 +58,10 @@ public class GameManager : Singleton<GameManager>
     private static void SetGameState(GameState state)
     {
         GameManager.Instance.gameState = state;
+    }
+
+    private static void PauseGame()
+    {
+        
     }
 }
