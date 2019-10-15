@@ -13,7 +13,7 @@ public class Singleton<T> : MonoBehaviour where T: MonoBehaviour
     private static T instance;
 
     /// <summary>
-    /// Public field for the encapsulated field.
+    /// Public field for the encapsulated field of instance.
     /// </summary>
     public static T Instance
     {
