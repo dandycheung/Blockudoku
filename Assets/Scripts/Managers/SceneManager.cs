@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Manages the scene of the game.
 /// </summary>
+[DisallowMultipleComponent]
 public class SceneManager : Singleton<SceneManager>
 {
     /// <summary>
@@ -23,5 +23,14 @@ public class SceneManager : Singleton<SceneManager>
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(SceneBuildIndex);
     }
-    
+
+    /// <summary>
+    /// Checks whether specified scene is the current scene or not.
+    /// </summary>
+    /// <param name="SceneName">Scene that will be checked.</param>
+    /// <returns>True or false.</returns>
+    public bool IsCurrentScene(string SceneName)
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals(SceneName);
+    }
 }
