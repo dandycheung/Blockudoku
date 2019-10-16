@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -60,8 +61,11 @@ public class GameManager : Singleton<GameManager>
         GameManager.Instance.gameState = state;
     }
 
+    /// <summary>
+    /// Pauses the game.
+    /// </summary>
     private static void PauseGame()
     {
-        
+        GameManager.SetGameState(GameState.Pause);
     }
 }
