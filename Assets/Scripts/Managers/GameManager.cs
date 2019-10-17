@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -10,7 +9,8 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// Field of the current game state of game.
     /// </summary>
-    [SerializeField] private GameState gameState;
+    [SerializeField]
+    private GameState gameState;
 
     /// <summary>
     /// Property of the field of current game state.
