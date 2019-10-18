@@ -56,7 +56,7 @@ public class GameManager : Singleton<GameManager>
     /// Sets the specified game state to the current game state.
     /// </summary>
     /// <param name="state">State which will be set to the current game state.</param>
-    private static void SetGameState(GameState state)
+    private void SetGameState(GameState state)
     {
         GameManager.Instance.gameState = state;
     }
@@ -64,8 +64,8 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// Pauses the game.
     /// </summary>
-    private static void PauseGame()
+    private void PauseGame()
     {
-        GameManager.SetGameState(GameState.Pause);
+        GameManager.Instance.SetGameState(GameState.Pause);
     }
 }
