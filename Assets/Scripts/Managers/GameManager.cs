@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     public GameState GameState
     {
         get { return this.gameState; }
+        private set { this.gameState = value; }
     }
 
     /// <summary>
