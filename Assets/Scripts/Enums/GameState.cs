@@ -1,5 +1,6 @@
-using UnityEngine;
-
+/// <summary>
+/// Custom type for the states of game.
+/// </summary>
 public enum GameState
 {
     MainMenu,
