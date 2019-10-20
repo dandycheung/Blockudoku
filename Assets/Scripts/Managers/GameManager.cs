@@ -49,7 +49,13 @@ public class GameManager : Singleton<GameManager>
 
         if (this.gameState == GameState.Pause && SceneManager.Instance.IsCurrentScene("Game"))
         {
-            PauseGame();
+            this.PauseGame();
+            return;
+        }
+
+        if (this.gameState == GameState.Gameplay && SceneManager .Instance.IsCurrentScene("Game"))
+        {
+            this.ResumeGame();
         }
     }
 
@@ -57,7 +63,7 @@ public class GameManager : Singleton<GameManager>
     /// Sets the specified game state to the current game state.
     /// </summary>
     /// <param name="state">State which will be set to the current game state.</param>
-    private void SetGameState(GameState state)
+    public void SetGameState(GameState state)
     {
         GameManager.Instance.gameState = state;
     }
@@ -67,6 +73,14 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void PauseGame()
     {
-        GameManager.Instance.SetGameState(GameState.Pause);
+        Time.timeScale = 0f;
+    }
+
+    /// <summary>
+    /// Resumes the games.
+    /// </summary>
+    private void ResumeGame()
+    {
+        Time.timeScale = 1f;
     }
 }
