@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         SceneManager.Instance.LoadScene(SceneName: "Main Menu");
-        SetGameState(GameState.MainMenu);
+        GameManager.Instance.SetGameState(GameState.MainMenu);
     }
 
     /// <summary>
@@ -49,13 +49,13 @@ public class GameManager : Singleton<GameManager>
 
         if (this.gameState == GameState.Pause && SceneManager.Instance.IsCurrentScene("Game"))
         {
-            this.PauseGame();
+            GameManager.Instance.PauseGame();
             return;
         }
 
         if (this.gameState == GameState.Gameplay && SceneManager .Instance.IsCurrentScene("Game"))
         {
-            this.ResumeGame();
+            GameManager.Instance.ResumeGame();
         }
     }
 
