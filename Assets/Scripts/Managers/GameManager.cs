@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Manages the loop of game.
+/// Manages the game according to game states.
 /// </summary>
 [DisallowMultipleComponent]
 public class GameManager : Singleton<GameManager>
@@ -27,7 +27,8 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         SceneManager.Instance.LoadScene(SceneName: "Main Menu");
-        GameManager.Instance.SetGameState(GameState.MainMenu);
+        GameManager.Instance.SetGameState(GameState.SplashScreen);
+        GameplayManager.Instance.SetGameplayState(GameplayState.None);
     }
 
     /// <summary>
@@ -35,6 +36,12 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void Update()
     {
+        if (GameManager.Instance.gameState.Equals(GameState.SplashScreen) && !SceneManager.Instance.IsCurrentScene("Splash Screen"))
+        {
+            SceneManager.Instance.LoadScene("Splash Screen");
+            return;
+        }
+        
         if (this.gameState == GameState.MainMenu && !SceneManager.Instance.IsCurrentScene("Main Menu"))
         {
             SceneManager.Instance.LoadScene("Main Menu");
