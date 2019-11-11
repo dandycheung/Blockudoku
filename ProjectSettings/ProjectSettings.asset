@@ -728,10 +728,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 5c795e3b-bd6b-457d-8350-f14d8aa586b4
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Blockudoku
+  organizationId: meric-balikci-gmail-com
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
