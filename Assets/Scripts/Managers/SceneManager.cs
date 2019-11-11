@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -6,12 +8,19 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class SceneManager : Singleton<SceneManager>
 {
+    [SerializeField]
+    private List<GameObject> Singletons = new List<GameObject>();
+    
     /// <summary>
     /// Loads the specified scene.
     /// </summary>
     /// <param name="SceneName">Scene name as string.</param>
     public void LoadScene(string SceneName)
     {
+        /*foreach (GameObject singleton in this.Singletons)
+        {
+            DontDestroyOnLoad(singleton);
+        }*/
         UnityEngine.SceneManagement.SceneManager.LoadScene(SceneName);
     }
 
@@ -32,5 +41,17 @@ public class SceneManager : Singleton<SceneManager>
     public bool IsCurrentScene(string SceneName)
     {
         return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals(SceneName);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="sceneName"></param>
+    /// <returns></returns>
+    public IEnumerator ChangeSceneWithWaiting(string sceneName , float duration )
+    {
+        yield return new WaitForSeconds(duration);
+        SceneManager.Instance.LoadScene(sceneName);
     }
 }

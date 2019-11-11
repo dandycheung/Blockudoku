@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -26,8 +27,7 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void Awake()
     {
-        SceneManager.Instance.LoadScene(SceneName: "Main Menu");
-        GameManager.Instance.SetGameState(GameState.SplashScreen);
+        /*GameManager.Instance.SetGameState(GameState.SplashScreen);*/
         GameplayManager.Instance.SetGameplayState(GameplayState.None);
     }
 
@@ -36,33 +36,31 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void Update()
     {
-        if (GameManager.Instance.gameState.Equals(GameState.SplashScreen) && !SceneManager.Instance.IsCurrentScene("Splash Screen"))
+        switch (GameManager.Instance.gameState)
         {
-            SceneManager.Instance.LoadScene("Splash Screen");
-            return;
-        }
+            case GameState.SplashScreen:
+                GameManager.Instance.SetGameState(GameState.None);
+                if (!SceneManager.Instance.IsCurrentScene("Splash Screen"))
+                {
+                    SceneManager.Instance.LoadScene("Splash Screen");
+                }
+                this.StartCoroutine(GameManager.Instance.SetGameStateWithWaiting(GameState.Gameplay,3f));
+                break;
         
-        if (this.gameState == GameState.MainMenu && !SceneManager.Instance.IsCurrentScene("Main Menu"))
-        {
-            SceneManager.Instance.LoadScene("Main Menu");
-            return;
-        }
-
-        if (this.gameState == GameState.Gameplay && !SceneManager.Instance.IsCurrentScene("Game"))
-        {
-            SceneManager.Instance.LoadScene("Game");
-            return;
-        }
-
-        if (this.gameState == GameState.Pause && SceneManager.Instance.IsCurrentScene("Game"))
-        {
-            GameManager.Instance.PauseGame();
-            return;
-        }
-
-        if (this.gameState == GameState.Gameplay && SceneManager .Instance.IsCurrentScene("Game"))
-        {
-            GameManager.Instance.ResumeGame();
+            case GameState.MainMenu:
+                SceneManager.Instance.LoadScene("Main Menu");
+                break;
+            
+            case GameState.Gameplay when !SceneManager.Instance.IsCurrentScene("Game"):
+                SceneManager.Instance.LoadScene("Game");
+                break;
+            
+            case GameState.Pause:
+                GameManager.Instance.PauseGame();
+                break;
+            
+            case GameState.None:
+                break;
         }
     }
 
@@ -72,6 +70,18 @@ public class GameManager : Singleton<GameManager>
     /// <param name="state">State which will be set to the current game state.</param>
     public void SetGameState(GameState state)
     {
+        GameManager.Instance.gameState = state;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="state"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
+    public IEnumerator SetGameStateWithWaiting(GameState state , float duration)
+    {
+        yield return new WaitForSeconds(duration);
         GameManager.Instance.gameState = state;
     }
 
