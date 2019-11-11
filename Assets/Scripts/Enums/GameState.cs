@@ -3,7 +3,11 @@
 /// </summary>
 public enum GameState
 {
+    SplashScreen,
+    
     MainMenu,
+    
+    Timer,
     
     Gameplay,
     
@@ -11,7 +15,5 @@ public enum GameState
     
     GameOver,
     
-    SplashScreen,
-    
-    Timer
+    None
 }
