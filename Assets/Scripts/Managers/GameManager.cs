@@ -42,22 +42,24 @@ public class GameManager : Singleton<GameManager>
             case GameState.SplashScreen:
                 if (!SceneManager.Instance.IsCurrentScene("Splash Screen"))
                 {
+                    DontDestroyOnLoad(GameManager.Instance);
                     SceneManager.Instance.LoadScene("Splash Screen");
                 }
                 GameManager.Instance.StartCoroutine(GameManager.Instance.SetGameStateWithWaiting(GameState.MainMenu,3f));
                 break;
         
             case GameState.MainMenu:
-                if (SceneManager.Instance.IsCurrentScene("Main Menu"))
+                if (!SceneManager.Instance.IsCurrentScene("Main Menu"))
                 {
-                    return;
+                    DontDestroyOnLoad(GameManager.Instance);
+                    SceneManager.Instance.LoadScene("Main Menu");
                 }
-                SceneManager.Instance.LoadScene("Main Menu");
                 break;
             
             case GameState.Gameplay :
                 if (!SceneManager.Instance.IsCurrentScene("Game"))
                 {
+                    DontDestroyOnLoad(GameManager.Instance);
                     SceneManager.Instance.LoadScene("Game");
                 }
                 break;
