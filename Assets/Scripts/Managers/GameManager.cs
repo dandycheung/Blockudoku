@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Manages the game according to game states.
@@ -27,8 +27,7 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void Awake()
     {
-        /*GameManager.Instance.SetGameState(GameState.SplashScreen);*/
-        GameplayManager.Instance.SetGameplayState(GameplayState.None);
+        GameManager.Instance.SetGameState(GameState.SplashScreen);
     }
 
     /// <summary>
@@ -36,27 +35,31 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void Update()
     {
+        if (GameManager.Instance.gameState.Equals(GameState.None)) return;
+        
         switch (GameManager.Instance.gameState)
         {
             case GameState.SplashScreen:
-                GameManager.Instance.SetGameState(GameState.None);
                 if (!SceneManager.Instance.IsCurrentScene("Splash Screen"))
                 {
                     SceneManager.Instance.LoadScene("Splash Screen");
                 }
-                this.StartCoroutine(GameManager.Instance.SetGameStateWithWaiting(GameState.Gameplay,3f));
+                GameManager.Instance.StartCoroutine(GameManager.Instance.SetGameStateWithWaiting(GameState.MainMenu,3f));
                 break;
         
             case GameState.MainMenu:
+                if (SceneManager.Instance.IsCurrentScene("Main Menu"))
+                {
+                    return;
+                }
                 SceneManager.Instance.LoadScene("Main Menu");
                 break;
             
-            case GameState.Gameplay when !SceneManager.Instance.IsCurrentScene("Game"):
-                SceneManager.Instance.LoadScene("Game");
-                break;
-            
-            case GameState.Pause:
-                GameManager.Instance.PauseGame();
+            case GameState.Gameplay :
+                if (!SceneManager.Instance.IsCurrentScene("Game"))
+                {
+                    SceneManager.Instance.LoadScene("Game");
+                }
                 break;
             
             case GameState.None:
@@ -79,25 +82,18 @@ public class GameManager : Singleton<GameManager>
     /// <param name="state"></param>
     /// <param name="duration"></param>
     /// <returns></returns>
-    public IEnumerator SetGameStateWithWaiting(GameState state , float duration)
+    private IEnumerator SetGameStateWithWaiting(GameState state , float duration)
     {
+        GameManager.Instance.SetGameState(GameState.None);
         yield return new WaitForSeconds(duration);
-        GameManager.Instance.gameState = state;
+        GameManager.Instance.SetGameState(state);
     }
 
     /// <summary>
-    /// Pauses the game.
+    /// 
     /// </summary>
-    private void PauseGame()
+    public void ExitGame()
     {
-        Time.timeScale = 0f;
-    }
-
-    /// <summary>
-    /// Resumes the games.
-    /// </summary>
-    private void ResumeGame()
-    {
-        Time.timeScale = 1f;
+        Application.Quit();
     }
 }
