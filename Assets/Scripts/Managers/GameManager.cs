@@ -7,6 +7,8 @@ using System.Collections;
 [DisallowMultipleComponent]
 public class GameManager : Singleton<GameManager>
 {
+    #region Fields
+
     /// <summary>
     /// Field of the current game state of game.
     /// </summary>
@@ -21,6 +23,10 @@ public class GameManager : Singleton<GameManager>
         get { return this.gameState; }
         private set { this.gameState = value; }
     }
+
+    #endregion
+
+    #region Methods
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -98,4 +104,14 @@ public class GameManager : Singleton<GameManager>
     {
         Application.Quit();
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void OnApplicationQuit()
+    {
+        
+    }
+
+    #endregion
 }
