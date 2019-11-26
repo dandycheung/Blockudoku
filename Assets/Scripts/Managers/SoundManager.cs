@@ -55,7 +55,10 @@ public class SoundManager : Singleton<SoundManager>
         {
             if (sound.Name.Equals(Name))
             {
-                sound.AudioSourceComponent.Play();
+                if (sound.AudioSourceComponent.clip)
+                {
+                    sound.AudioSourceComponent.Play();
+                }
                 return;
             }
         }
