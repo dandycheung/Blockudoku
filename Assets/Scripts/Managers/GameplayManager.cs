@@ -188,7 +188,8 @@ public class GameplayManager : Singleton<GameplayManager>
             case GameplayState.GameOver:
                 GameplayManager.Instance.SetGameplayState(GameplayState.None);
                 UiManager.Instance.GameOverMenu.Open();
-                UiManager.Instance.GameOverMenu.UpdateCurrentScoreOnGameover();
+                UiManager.Instance.GameOverMenu.UpdateCurrentScore();
+                UiManager.Instance.GameOverMenu.UpdateHighScore();
                 if (File.Exists(Application.persistentDataPath + "/save.txt"))
                 {
                     File.Delete(Application.persistentDataPath + "/save.txt");
