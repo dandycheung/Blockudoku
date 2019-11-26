@@ -9010,9 +9010,9 @@ MonoBehaviour:
   sounds:
   - audioSourceComponent: {fileID: 0}
     name: Drop
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+    clip: {fileID: 8300000, guid: fa0ee82201dab25c7a918dfa628374c2, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
   - audioSourceComponent: {fileID: 0}
     name: 
