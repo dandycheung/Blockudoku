@@ -105,6 +105,7 @@ public class Board : MonoBehaviour, IDropHandler
         if (BlockManager.Instance.IsBlockDroppable(Draggable.block))
         {
             BlockManager.Instance.DropBlock(Draggable.block);
+            SoundManager.Instance.PlayClip("Drop");
             GameplayManager.Instance.SetGameplayState(GameplayState.OnBlockDrop);
         }
     }
