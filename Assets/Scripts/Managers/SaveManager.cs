@@ -25,7 +25,7 @@ public class SaveManager : Singleton<SaveManager>
     {
         /*Debug.Log("Saved");*/
         Save save = SaveManager.Instance.CreateCheckpoint();
-        FileStream file = File.Create(Application.persistentDataPath + "/save.txt");
+        FileStream file = File.Create(Application.persistentDataPath + "/save.dat");
         if (SaveManager.Instance.IsTherePlayerData())
         {
             SaveManager.Instance.UpdatePlayerData();
@@ -46,11 +46,11 @@ public class SaveManager : Singleton<SaveManager>
     public void LoadProgress()
     {
         /*Debug.Log("Loaded");*/
-        FileStream file = File.Open(Application.persistentDataPath + "/save.txt", FileMode.Open);
+        FileStream file = File.Open(Application.persistentDataPath + "/save.dat", FileMode.Open);
         Save save = (Save) SaveManager.Instance.binaryFormatter.Deserialize(file);
         SaveManager.Instance.LoadCheckpoint(save);
         file.Close();
-        File.Delete(Application.persistentDataPath + "/save.txt");
+        File.Delete(Application.persistentDataPath + "/save.dat");
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class SaveManager : Singleton<SaveManager>
     /// <returns></returns>
     public bool IsThereSave()
     {
-        if (File.Exists(Application.persistentDataPath + "/save.txt"))
+        if (File.Exists(Application.persistentDataPath + "/save.dat"))
         {
             return true;
         }
