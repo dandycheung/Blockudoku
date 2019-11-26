@@ -21,11 +21,25 @@ public class GameOverMenu : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    public void UpdateCurrentScoreOnGameover()
+    [SerializeField]
+    private Text highScoreTextOnGameOver;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void UpdateCurrentScore()
     {
         currentScoreTextOnGameOver.text = ScoreManager.Instance.CurrentScore.ToString();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public void UpdateHighScore()
+    {
+        this.highScoreTextOnGameOver.text = ScoreManager.Instance.HighScore.ToString();
+    }
+    
     /// <summary>
     /// 
     /// </summary>
