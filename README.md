@@ -1,5 +1,5 @@
-<div align="center"> # Blockudoku </div>
-<div align="center">**SCREENSHOTS**</div>
+<div align="center"> <h1>Blockudoku</h1> </div>
+<div align="center"> <h3>**SCREENSHOTS**</h3></div>
 <div align="center">
     <img src="/Screenshots/1.jpg" width ="160">
     <img src="/Screenshots/2.jpg" width ="160">
