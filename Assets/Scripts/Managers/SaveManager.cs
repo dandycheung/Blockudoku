@@ -12,12 +12,12 @@ public class SaveManager : Singleton<SaveManager>
     /// </summary>
     [SerializeField]
     private GameObject blockPiecePrefab;
-    
+
     /// <summary>
     /// 
     /// </summary>
     private readonly BinaryFormatter binaryFormatter = new BinaryFormatter();
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -34,7 +34,7 @@ public class SaveManager : Singleton<SaveManager>
         {
             SaveManager.Instance.CreatePlayerData();
         }
-        
+
         SaveManager.Instance.binaryFormatter.Serialize(file, save);
         file.Close();
     }
@@ -47,7 +47,7 @@ public class SaveManager : Singleton<SaveManager>
     {
         /*Debug.Log("Loaded");*/
         FileStream file = File.Open(Application.persistentDataPath + "/save.dat", FileMode.Open);
-        Save save = (Save) SaveManager.Instance.binaryFormatter.Deserialize(file);
+        Save save = (Save)SaveManager.Instance.binaryFormatter.Deserialize(file);
         SaveManager.Instance.LoadCheckpoint(save);
         file.Close();
         File.Delete(Application.persistentDataPath + "/save.dat");
@@ -86,13 +86,13 @@ public class SaveManager : Singleton<SaveManager>
     /// </summary>
     public void UpdatePlayerData()
     {
-        FileStream playerDataFile = File.Open(Application.persistentDataPath + "/playerData.dat",FileMode.Open);
-        PlayerData playerData = (PlayerData) SaveManager.Instance.binaryFormatter.Deserialize(playerDataFile);
+        FileStream playerDataFile = File.Open(Application.persistentDataPath + "/playerData.dat", FileMode.Open);
+        PlayerData playerData = (PlayerData)SaveManager.Instance.binaryFormatter.Deserialize(playerDataFile);
         if (ScoreManager.Instance.HighScore > playerData.HighScore)
         {
             playerData.HighScore = ScoreManager.Instance.HighScore;
         }
-        SaveManager.Instance.binaryFormatter.Serialize(playerDataFile,playerData);
+        SaveManager.Instance.binaryFormatter.Serialize(playerDataFile, playerData);
         playerDataFile.Close();
     }
 
@@ -101,13 +101,13 @@ public class SaveManager : Singleton<SaveManager>
     /// </summary>
     public void LoadPlayerData()
     {
-        FileStream playerDataFile = File.Open(Application.persistentDataPath + "/playerData.dat",FileMode.Open);
-        PlayerData playerData = (PlayerData) SaveManager.Instance.binaryFormatter.Deserialize(playerDataFile);
+        FileStream playerDataFile = File.Open(Application.persistentDataPath + "/playerData.dat", FileMode.Open);
+        PlayerData playerData = (PlayerData)SaveManager.Instance.binaryFormatter.Deserialize(playerDataFile);
         ScoreManager.Instance.HighScore = playerData.HighScore;
         playerDataFile.Close();
-        File.Delete(Application.persistentDataPath +"/playerData.dat");
+        File.Delete(Application.persistentDataPath + "/playerData.dat");
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -116,7 +116,7 @@ public class SaveManager : Singleton<SaveManager>
         PlayerData playerData = new PlayerData();
         FileStream playerDataFile = File.Create(Application.persistentDataPath + "/playerData.dat");
         playerData.HighScore = ScoreManager.Instance.HighScore;
-        SaveManager.Instance.binaryFormatter.Serialize(playerDataFile,playerData);
+        SaveManager.Instance.binaryFormatter.Serialize(playerDataFile, playerData);
         playerDataFile.Close();
     }
 
@@ -140,7 +140,7 @@ public class SaveManager : Singleton<SaveManager>
 
         foreach (Slot slot in SlotManager.Instance.Slots)
         {
-            Slot_Save slot_save = new Slot_Save {Id = slot.Id};
+            Slot_Save slot_save = new Slot_Save { Id = slot.Id };
             save.Slots.Add(slot_save);
             if (!slot.IsEmpty)
             {
@@ -155,7 +155,7 @@ public class SaveManager : Singleton<SaveManager>
         }
 
         save.CurrentScore = ScoreManager.Instance.CurrentScore;
-        
+
         return save;
     }
 
@@ -181,11 +181,11 @@ public class SaveManager : Singleton<SaveManager>
         {
             if (!saveSlot.IsEmpty)
             {
-                SlotManager.Instance.SpawnBlockAtSlot(saveSlot.Id-1 , saveSlot.Block);
+                SlotManager.Instance.SpawnBlockAtSlot(saveSlot.Id - 1, saveSlot.Block);
             }
             else
             {
-                SlotManager.Instance.Slots[saveSlot.Id-1].IsEmpty = true;
+                SlotManager.Instance.Slots[saveSlot.Id - 1].IsEmpty = true;
             }
         }
 

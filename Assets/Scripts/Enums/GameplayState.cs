@@ -14,6 +14,8 @@ public enum GameplayState
     
     GameOver,
     
+    GameOvered,
+    
     Pause,
     
     None

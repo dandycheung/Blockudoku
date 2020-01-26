@@ -7,13 +7,7 @@ public enum GameState
     
     MainMenu,
     
-    Timer,
-    
     Gameplay,
-    
-    Pause,
-    
-    GameOver,
     
     None
 }

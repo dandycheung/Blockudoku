@@ -103,14 +103,6 @@ public class ScoreManager : Singleton<ScoreManager>
     /// <summary>
     /// 
     /// </summary>
-    public void SetNewHighScore()
-    {
-        ScoreManager.Instance.highScore = ScoreManager.Instance.currentScore;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
     public void UpdateHighScore()
     {
         if (ScoreManager.Instance.currentScore > ScoreManager.Instance.highScore)

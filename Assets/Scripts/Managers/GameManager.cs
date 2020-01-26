@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using System.Collections;
 
@@ -112,11 +111,12 @@ public class GameManager : Singleton<GameManager>
     /// <param name="pauseStatus"></param>
     private void OnApplicationPause(bool pauseStatus)
     {
-        if (GameManager.Instance.gameState.Equals(GameState.Gameplay))
+        if (GameManager.Instance.gameState.Equals(GameState.Gameplay) &&
+            !GameplayManager.Instance.GameplayState.Equals(GameplayState.GameOvered))
         {
             SaveManager.Instance.SaveProgress(); 
-            SaveManager.Instance.CreatePlayerData();
         }
+        SaveManager.Instance.CreatePlayerData();
     }
 
     /// <summary>
@@ -124,11 +124,12 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void OnApplicationQuit()
     {
-        if (GameManager.Instance.gameState.Equals(GameState.Gameplay))
+        if (GameManager.Instance.gameState.Equals(GameState.Gameplay) &&
+            !GameplayManager.Instance.GameplayState.Equals(GameplayState.GameOvered))
         {
             SaveManager.Instance.SaveProgress();
-            SaveManager.Instance.CreatePlayerData();
         }
+        SaveManager.Instance.CreatePlayerData();
     }
 
     #endregion

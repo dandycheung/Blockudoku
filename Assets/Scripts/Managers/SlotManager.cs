@@ -142,6 +142,7 @@ public class SlotManager : Singleton<SlotManager>
                 SlotManager.Instance.SpawnRandomBlockAtSlot(SlotManager.Instance.GetSlotIndex(slot));
             }
         }
+        SoundManager.Instance.PlayClip("Spawn");
     }
 
     /// <summary>

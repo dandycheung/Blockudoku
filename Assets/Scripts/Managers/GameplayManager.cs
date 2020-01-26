@@ -44,7 +44,7 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         GameplayManager.Instance.gameplayState = state;
     }
-    
+
     /// <summary>
     /// Starts the gameplay sequence.
     /// </summary>
@@ -64,7 +64,7 @@ public class GameplayManager : Singleton<GameplayManager>
     {
         StartCoroutine(GameplayManager.Instance.StartGameplaySequence());
     }
-    
+
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
@@ -95,9 +95,9 @@ public class GameplayManager : Singleton<GameplayManager>
                 GameplayManager.Instance.StartGameplay();
                 GameplayManager.Instance.SetGameplayState(GameplayState.None);
                 break;
-                
+
             case GameplayState.OnBlockDrag:
-                
+
                 break;
 
             case GameplayState.OnBlockDrop:
@@ -124,11 +124,11 @@ public class GameplayManager : Singleton<GameplayManager>
                     }
                 }
 
-                if (BoardManager.Instance.RowsWillBeCleared.Count > 0 || 
+                if (BoardManager.Instance.RowsWillBeCleared.Count > 0 ||
                     BoardManager.Instance.ColumnsWillBeCleared.Count > 0)
                 {
                     GameplayManager.Instance.SetGameplayState(GameplayState.OnDelete);
-                    return;   
+                    return;
                 }
 
                 if (BlockManager.Instance.QueuedBlocks.Count > 0)
@@ -184,9 +184,9 @@ public class GameplayManager : Singleton<GameplayManager>
                 }
                 GameplayManager.Instance.SetGameplayState(GameplayState.GameOver);
                 break;
-            
+
             case GameplayState.GameOver:
-                GameplayManager.Instance.SetGameplayState(GameplayState.None);
+                GameplayManager.Instance.SetGameplayState(GameplayState.GameOvered);
                 UiManager.Instance.GameOverMenu.Open();
                 UiManager.Instance.GameOverMenu.UpdateCurrentScore();
                 UiManager.Instance.GameOverMenu.UpdateHighScore();
