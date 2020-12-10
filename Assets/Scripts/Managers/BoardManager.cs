@@ -69,6 +69,21 @@ public class BoardManager : Singleton<BoardManager>
         set { this.columnsWillBeCleared = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField]
+    private List<Square> squaresWillBeCleared = new List<Square>();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public List<Square> SquaresWillBeCleared
+    {
+        get { return this.squaresWillBeCleared; }
+        set { this.squaresWillBeCleared = value; }
+    }
+
     #endregion
 
     #region Methods
@@ -92,6 +107,7 @@ public class BoardManager : Singleton<BoardManager>
         BoardManager.Instance.FindTiles(BoardManager.Instance.currentBoard);
         BoardManager.Instance.FindRows(BoardManager.Instance.currentBoard);
         BoardManager.Instance.FindColumns(BoardManager.Instance.currentBoard);
+        BoardManager.Instance.FindSquares(BoardManager.Instance.currentBoard);
         board.gameObject.SetActive(true);
     }
 
@@ -150,6 +166,36 @@ public class BoardManager : Singleton<BoardManager>
     }
 
     /// <summary>
+    /// Creates a square with the specified 
+    /// 编号     编号1对应的x，y坐标
+    /// 1 2 3    (1,1 2,1 3,1)
+    /// 4 5 6    (1,2 2,2 3,2)
+    /// 7 8 9    (1,3 2,3 3,3)
+    /// finds the tiles of by SquareNumber
+    /// </summary>
+    /// <param name="SquareNumber">编号对应九宫格9个3x3的区域</param>
+    /// <returns>Square.</returns>
+    private Square FindSquare(int SquareNumber)
+    {
+        Square square = new Square();
+
+        int xBegin = 3 * ((SquareNumber - 1) % 3) + 1;
+        int xEnd = xBegin + 2;
+        int yBegin = 1 + 3 * ((SquareNumber - 1) / 3);
+        int yEnd = yBegin + 2;
+
+        foreach (Tile tile in BoardManager.Instance.CurrentBoard.Tiles)
+        {
+            if ((tile.XCoordinate >= xBegin && tile.XCoordinate <= xEnd) &&
+                (tile.YCoordinate >= yBegin && tile.YCoordinate <= yEnd))
+            {
+                square.Tiles.Add(tile);
+            }
+        }
+        return square;
+    }
+
+    /// <summary>
     /// Finds the rows of the board and adds them to the board.
     /// </summary>
     private void FindRows(Board board)
@@ -168,6 +214,17 @@ public class BoardManager : Singleton<BoardManager>
         for (int columnNumber = 1; columnNumber <= board.RowCount; columnNumber++)
         {
             board.Columns.Add(BoardManager.Instance.FindColumn(columnNumber));
+        }
+    }
+
+    /// <summary>
+    /// Finds the squares of the board and adds them to the columns which is type of List.
+    /// </summary>
+    private void FindSquares(Board board)
+    {
+        for (int squareNumber = 1; squareNumber <= board.RowCount; squareNumber++)
+        {
+            board.Squares.Add(BoardManager.Instance.FindSquare(squareNumber));
         }
     }
 
@@ -200,6 +257,27 @@ public class BoardManager : Singleton<BoardManager>
     {
         int filledTileCount = 0;
         foreach (Tile tile in row.Tiles)
+        {
+            if (!tile.IsEmpty)
+            {
+                filledTileCount++;
+            }
+        }
+        if (filledTileCount == 9)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Checks whether the square filled or not.
+    /// </summary>
+    /// <param name="square">Square that will be checked.</param>
+    public bool IsSquareFilled(Square square)
+    {
+        int filledTileCount = 0;
+        foreach (Tile tile in square.Tiles)
         {
             if (!tile.IsEmpty)
             {

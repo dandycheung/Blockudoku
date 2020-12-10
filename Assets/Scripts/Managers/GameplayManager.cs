@@ -106,6 +106,7 @@ public class GameplayManager : Singleton<GameplayManager>
                     SlotManager.Instance.SpawnNewBlockSet();
                 }
 
+                // 扫描每一行，满了添加到待清除队列中
                 foreach (Row row in BoardManager.Instance.CurrentBoard.Rows)
                 {
                     if (BoardManager.Instance.IsRowFilled(row))
@@ -115,6 +116,7 @@ public class GameplayManager : Singleton<GameplayManager>
                     }
                 }
 
+                // 扫描每一列，满了添加到待清除队列中
                 foreach (Column column in BoardManager.Instance.CurrentBoard.Columns)
                 {
                     if (BoardManager.Instance.IsColumnFilled(column))
@@ -124,8 +126,19 @@ public class GameplayManager : Singleton<GameplayManager>
                     }
                 }
 
+                // 扫描每一小块正方形，满了添加到待清除队列中
+                foreach (Square square in BoardManager.Instance.CurrentBoard.Squares)
+                {
+                    if (BoardManager.Instance.IsSquareFilled(square))
+                    {
+                        TileManager.Instance.FlagTilesOfSquare(square);
+                        BoardManager.Instance.SquaresWillBeCleared.Add(square);
+                    }
+                }
+
                 if (BoardManager.Instance.RowsWillBeCleared.Count > 0 ||
-                    BoardManager.Instance.ColumnsWillBeCleared.Count > 0)
+                    BoardManager.Instance.ColumnsWillBeCleared.Count > 0 ||
+                    BoardManager.Instance.SquaresWillBeCleared.Count > 0)
                 {
                     GameplayManager.Instance.SetGameplayState(GameplayState.OnDelete);
                     return;
@@ -145,6 +158,7 @@ public class GameplayManager : Singleton<GameplayManager>
                 GameplayManager.Instance.SetGameplayState(GameplayState.GameOver);
                 break;
             case GameplayState.OnDelete:
+
                 if (BoardManager.Instance.RowsWillBeCleared.Count > 0)
                 {
                     foreach (Row row in BoardManager.Instance.RowsWillBeCleared)
@@ -169,6 +183,19 @@ public class GameplayManager : Singleton<GameplayManager>
                         UiManager.Instance.GameplayMenu.UpdateHighScore();
                     }
                     BoardManager.Instance.ColumnsWillBeCleared.Clear();
+                }
+
+                if (BoardManager.Instance.SquaresWillBeCleared.Count > 0)
+                {
+                    foreach (Square square in BoardManager.Instance.SquaresWillBeCleared)
+                    {
+                        TileManager.Instance.ClearFlaggedTilesOfSquare(square);
+                        ScoreManager.Instance.IncreseScore(ScoreManager.Instance.SquareDeleteScore);
+                        ScoreManager.Instance.UpdateHighScore();
+                        UiManager.Instance.GameplayMenu.UpdateCurrentScore();
+                        UiManager.Instance.GameplayMenu.UpdateHighScore();
+                    }
+                    BoardManager.Instance.SquaresWillBeCleared.Clear();
                 }
 
                 if (BlockManager.Instance.QueuedBlocks.Count > 0)

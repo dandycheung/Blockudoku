@@ -142,6 +142,21 @@ public class TileManager : Singleton<TileManager>
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="square"></param>
+    public void FlagTilesOfSquare(Square square)
+    {
+        foreach (Tile tile in square.Tiles)
+        {
+            if (!tile.IsFlagged)
+            {
+                TileManager.Instance.FlagTile(tile);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="row"></param>
     public void ClearFlaggedTilesOfRow(Row row)
     {
@@ -158,6 +173,18 @@ public class TileManager : Singleton<TileManager>
     public void ClearFlaggedTilesOfColumn(Column column)
     {
         foreach (Tile tile in column.Tiles)
+        {
+            this.StartCoroutine(TileManager.Instance.ClearTile(tile));
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="square"></param>
+    public void ClearFlaggedTilesOfSquare(Square square)
+    {
+        foreach (Tile tile in square.Tiles)
         {
             this.StartCoroutine(TileManager.Instance.ClearTile(tile));
         }
