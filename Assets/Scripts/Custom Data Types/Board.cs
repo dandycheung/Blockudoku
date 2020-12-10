@@ -51,7 +51,22 @@ public class Board : MonoBehaviour, IDropHandler
         get { return this.columns; }
         set { this.columns = value; }
     }
-    
+
+    /// <summary>
+    /// Field of the squares of board.
+    /// </summary>
+    [SerializeField]
+    private List<Square> squares = new List<Square>();
+
+    /// <summary>
+    /// Property of the squares of board.
+    /// </summary>
+    public List<Square> Squares
+    {
+        get { return this.squares; }
+        set { this.squares = value; }
+    }
+
     /// <summary>
     /// Field of count of rows that the board has. 
     /// </summary>

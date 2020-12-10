@@ -34,7 +34,21 @@ public class ScoreManager : Singleton<ScoreManager>
         get { return this.lineDeleteScore; }
         set { this.lineDeleteScore = value; }
     }
-    
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField, Range(1, 250)]
+    private int squareDeleteScore = 100;
+    /// <summary>
+    /// 
+    /// </summary>
+    public int SquareDeleteScore
+    {
+        get { return this.squareDeleteScore; }
+        set { this.squareDeleteScore = value; }
+    }
+
     /// <summary>
     /// Field of the score of game.
     /// </summary>
