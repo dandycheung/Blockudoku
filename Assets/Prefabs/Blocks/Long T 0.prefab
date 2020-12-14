@@ -90,7 +90,6 @@ MonoBehaviour:
   imageComponent: {fileID: 0}
   initialColor: {r: 0, g: 0.44307622, b: 0.73716336, a: 1}
   onDragColor: {r: 0.15859738, g: 0.26933044, b: 0.764151, a: 1}
-  alignSpeed: 5
 --- !u!1 &1155507541766864773
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,12 +209,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 0}
   startParent: {fileID: 0}
+  blockPieces: []
   scaleSpeed: 7.5
   positioningSpeed: 5
   xTileCount: 3
   yTileCount: 3
-  blockType: 21
+  blockType: 25
   scaledSize: {x: 2, y: 2, z: 1}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1155507542566006097
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +307,6 @@ MonoBehaviour:
   imageComponent: {fileID: 0}
   initialColor: {r: 0, g: 0.44307622, b: 0.73716336, a: 1}
   onDragColor: {r: 0.15859738, g: 0.26933044, b: 0.764151, a: 1}
-  alignSpeed: 5
 --- !u!1 &1155507542841157279
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +397,6 @@ MonoBehaviour:
   imageComponent: {fileID: 0}
   initialColor: {r: 0, g: 0.44307622, b: 0.73716336, a: 1}
   onDragColor: {r: 0.15859738, g: 0.26933044, b: 0.764151, a: 1}
-  alignSpeed: 5
 --- !u!1 &1155507542903990546
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +487,6 @@ MonoBehaviour:
   imageComponent: {fileID: 0}
   initialColor: {r: 0, g: 0.44307622, b: 0.73716336, a: 1}
   onDragColor: {r: 0.15859738, g: 0.26933044, b: 0.764151, a: 1}
-  alignSpeed: 5
 --- !u!1 &1155507542959140763
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,4 +577,3 @@ MonoBehaviour:
   imageComponent: {fileID: 0}
   initialColor: {r: 0, g: 0.44307622, b: 0.73716336, a: 1}
   onDragColor: {r: 0.15859738, g: 0.26933044, b: 0.764151, a: 1}
-  alignSpeed: 5
