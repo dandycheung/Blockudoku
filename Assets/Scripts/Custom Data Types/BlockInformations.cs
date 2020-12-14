@@ -142,7 +142,33 @@ public static class BlockInformations
             {true,true},
             {true,false}
         }},
-        
+
+        {BlockType.Shorth2x3ZeroDegree,new bool[2,3]
+        {
+            {true,true,false},
+            {false,true,true}
+        }},
+
+        {BlockType.Shorth3x2NintyDegree,new bool[3,2]
+        {
+            {false,true},
+            {true,true},
+            {true,false}
+        }},
+
+        {BlockType.Shorth2x3HundredAndEightyDegree,new bool[2,3]
+        {
+            {false,true,true},
+            {true,true,false}
+        }},
+
+        {BlockType.Shorth3x2TwoHundredAndSeventyDegree,new bool[3,2]
+        {
+            {true,false},
+            {true,true},
+            {false,true}
+        }},
+
         {BlockType.LongT3x3ZeroDegree,new bool[3,3]
         {
             {true,true,true},

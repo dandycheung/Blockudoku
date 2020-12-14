@@ -45,7 +45,15 @@ public enum BlockType
     ShortT2x3HundredAndEightyDegree,
     
     ShortT3x2TwoHundredAndSeventyDegree,
-    
+
+    Shorth2x3ZeroDegree,
+
+    Shorth3x2NintyDegree,
+
+    Shorth2x3HundredAndEightyDegree,
+
+    Shorth3x2TwoHundredAndSeventyDegree,
+
     LongT3x3ZeroDegree,
     
     LongT3x3NintyDegree,
