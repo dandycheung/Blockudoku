@@ -189,12 +189,20 @@ public static class BlockInformations
             {true,true}
         }},
         
+        {BlockType.Cross3x3,new bool[3,3]
+        {
+            {false,true,false},
+            {true,true,true},
+            {false,true,false}
+        }},
+        
         {BlockType.Square3x3,new bool[3,3]
         {
             {true,true,true},
             {true,true,true},
             {true,true,true}
         }}
+
     };
     
     /// <summary>

@@ -89,7 +89,22 @@ public class GameplayManager : Singleton<GameplayManager>
                     SaveManager.Instance.LoadProgress();
                     UiManager.Instance.GameplayMenu.UpdateCurrentScore();
                     GameplayManager.Instance.SetGameplayState(GameplayState.None);
-                    break;
+
+                    // 如果有游戏存档，检查是否游戏已结束，防止在游戏结束时未及时判断出来导致无法重新开始游戏的问题
+                    if (BlockManager.Instance.QueuedBlocks.Count > 0)
+                    {
+                        foreach (Block block in BlockManager.Instance.QueuedBlocks)
+                        {
+                            if (BlockManager.Instance.IsBlockFitsToBoard(block))
+                            {
+                                GameplayManager.Instance.StartGameplay();
+                                GameplayManager.Instance.SetGameplayState(GameplayState.None);
+                                return;
+                            }
+                        }
+                        GameplayManager.Instance.SetGameplayState(GameplayState.GameOver);
+                        return;
+                    }
                 }
 
                 GameplayManager.Instance.StartGameplay();

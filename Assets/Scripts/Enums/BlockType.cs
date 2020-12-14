@@ -59,7 +59,9 @@ public enum BlockType
     Cross2x2HundredAndEightyDegree,
     
     Square2x2,
-    
+
+    Cross3x3,
+
     Square3x3
-    
+
 }
