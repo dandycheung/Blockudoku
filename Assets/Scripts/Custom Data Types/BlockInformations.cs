@@ -227,6 +227,62 @@ public static class BlockInformations
             {true,true,true},
             {true,true,true},
             {true,true,true}
+        }},
+
+        {BlockType.MidL3x3ZeroDegree,new bool[3,3]
+        {
+            {true,false,false},
+            {true,false,false},
+            {true,true,false}
+        }},
+
+        {BlockType.MidL3x3NintyDegree,new bool[3,3]
+        {
+            {true,true,true},
+            {true,false,false},
+            {false,false,false}
+        }},
+
+        {BlockType.MidL3x3HundredAndEightyDegree,new bool[3,3]
+        {
+            {false,true,true},
+            {false,false,true},
+            {false,false,true}
+        }},
+
+        {BlockType.MidL3x3TwoHundredAndSeventyDegree,new bool[3,3]
+        {
+            {false,false,false},
+            {false,false,true},
+            {true,true,true}
+        }},
+
+        {BlockType.Mid2L3x3ZeroDegree,new bool[3,3]
+        {
+            {false,false,true},
+            {false,false,true},
+            {false,true,true}
+        }},
+
+        {BlockType.Mid2L3x3NintyDegree,new bool[3,3]
+        {
+            {false,false,false},
+            {true,false,false},
+            {true,true,true}
+        }},
+
+        {BlockType.Mid2L3x3HundredAndEightyDegree,new bool[3,3]
+        {
+            {true,true,false},
+            {true,false,false},
+            {true,false,false}
+        }},
+
+        {BlockType.Mid2L3x3TwoHundredAndSeventyDegree,new bool[3,3]
+        {
+            {true,true,true},
+            {false,false,true},
+            {false,false,false}
         }}
 
     };

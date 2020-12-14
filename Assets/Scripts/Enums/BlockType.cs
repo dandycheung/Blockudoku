@@ -70,6 +70,22 @@ public enum BlockType
 
     Cross3x3,
 
-    Square3x3
+    Square3x3,
+
+    MidL3x3ZeroDegree,
+
+    MidL3x3NintyDegree,
+
+    MidL3x3HundredAndEightyDegree,
+
+    MidL3x3TwoHundredAndSeventyDegree,
+
+    Mid2L3x3ZeroDegree,
+
+    Mid2L3x3NintyDegree,
+
+    Mid2L3x3HundredAndEightyDegree,
+
+    Mid2L3x3TwoHundredAndSeventyDegree
 
 }
