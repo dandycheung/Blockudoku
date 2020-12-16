@@ -50,4 +50,12 @@ public class GameplayMenu : MonoBehaviour
     {
         this.gameObject.SetActive(false);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void Replay()
+    {
+        GameplayManager.Instance.RestartGameplay();
+    }
 }
