@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OpenSettingsPanel()
     {
-        
+        GameManager.Instance.SetGameState(GameState.SettingsMenu);
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void CloseSettingsPanel()
     {
-        
+        GameManager.Instance.SetGameState(GameState.MainMenu);
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OpenScorePanel()
     {
-        
+        GameManager.Instance.SetGameState(GameState.ScoreMenu);
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void CloseScorePanel()
     {
-        
+        GameManager.Instance.SetGameState(GameState.MainMenu);
     }
 
     /// <summary>
@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OpenMainMenuPanel()
     {
-        
+        GameManager.Instance.SetGameState(GameState.MainMenu);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void CloseMainMenuPanel()
     {
-        
+        GameManager.Instance.SetGameState(GameState.MainMenu);
     }
 }
 

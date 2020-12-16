@@ -69,7 +69,23 @@ public class GameManager : Singleton<GameManager>
                     SceneManager.Instance.LoadScene("Game");
                 }
                 break;
-            
+
+            case GameState.ScoreMenu:
+                if (!SceneManager.Instance.IsCurrentScene("Score Menu"))
+                {
+                    DontDestroyOnLoad(GameManager.Instance);
+                    SceneManager.Instance.LoadScene("Score Menu");
+                }
+                break;
+
+            case GameState.SettingsMenu:
+                if (!SceneManager.Instance.IsCurrentScene("Settings Menu"))
+                {
+                    DontDestroyOnLoad(GameManager.Instance);
+                    SceneManager.Instance.LoadScene("Settings Menu");
+                }
+                break;
+
             case GameState.None:
                 break;
         }

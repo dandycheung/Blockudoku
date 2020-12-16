@@ -8,6 +8,10 @@ public enum GameState
     MainMenu,
     
     Gameplay,
-    
+
+    ScoreMenu,
+
+    SettingsMenu,
+
     None
 }
