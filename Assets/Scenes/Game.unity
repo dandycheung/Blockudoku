@@ -4396,17 +4396,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1118997624}
-        m_MethodName: SavePlayerData
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &715764687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5051,17 +5040,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1118997624}
-        m_MethodName: SavePlayerData
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &820506853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5485,7 +5463,7 @@ GameObject:
   - component: {fileID: 978443281}
   - component: {fileID: 978443280}
   m_Layer: 5
-  m_Name: Replay Button
+  m_Name: Settings Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8029,17 +8007,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 587433909}
         m_MethodName: ReturnToMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1118997624}
-        m_MethodName: SavePlayerData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
