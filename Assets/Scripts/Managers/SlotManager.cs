@@ -84,6 +84,20 @@ public class SlotManager : Singleton<SlotManager>
     }
 
     /// <summary>
+    /// Rotate Block
+    /// </summary>
+    private Block RotateBlockAtSlot(int SlotNumber)
+    {
+        Block block = BlockManager.Instance.GetRotateBlock();
+        block.transform.SetParent(SlotManager.Instance.slots[SlotNumber].transform);
+        SlotManager.Instance.slots[SlotNumber].gameObject.SetActive(true);
+        BlockManager.Instance.SetInitialTransformValues(block);
+        SlotManager.Instance.slots[SlotNumber].IsEmpty = false;
+        BlockManager.Instance.QueuedBlocks.Add(block);
+        return block;
+    }
+
+    /// <summary>
     /// 
     /// </summary>
     /// <param name="SlotNumber"></param>
@@ -142,6 +156,22 @@ public class SlotManager : Singleton<SlotManager>
             if (slot.IsEmpty)
             {
                 SlotManager.Instance.SpawnRandomBlockAtSlot(SlotManager.Instance.GetSlotIndex(slot));
+            }
+        }
+        SoundManager.Instance.PlayClip("Spawn");
+    }
+
+    /// <summary>
+    /// 随机生成3个Block放入可选区
+    /// </summary>
+    public void RotateBlock()
+    {
+        foreach (Slot slot in SlotManager.Instance.slots)
+        {
+            if (slot.IsEmpty)
+            {
+                SlotManager.Instance.RotateBlockAtSlot(SlotManager.Instance.GetSlotIndex(slot));
+                break;
             }
         }
         SoundManager.Instance.PlayClip("Spawn");

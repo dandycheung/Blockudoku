@@ -114,6 +114,21 @@ public class GameplayManager : Singleton<GameplayManager>
             case GameplayState.OnBlockDrag:
 
                 break;
+            case GameplayState.OnBlockChange:
+                if (SlotManager.Instance.AreSlotsEmpty())
+                {
+                    SlotManager.Instance.SpawnNewBlockSet();
+                }
+                GameplayManager.Instance.SetGameplayState(GameplayState.None);
+                break;
+
+            case GameplayState.OnBlockRotate:
+                if (SlotManager.Instance.AreSlotsEmpty())
+                {
+                    SlotManager.Instance.RotateBlock();
+                }
+                GameplayManager.Instance.SetGameplayState(GameplayState.None);
+                break;
 
             case GameplayState.OnBlockDrop:
                 if (SlotManager.Instance.AreSlotsEmpty())

@@ -133,7 +133,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     public void OnPointerClick(PointerEventData eventData)
     {
         block = this.gameObject.GetComponent<Block>();
-        BlockManager.Instance.ChangeBlock(block);
+        BlockManager.Instance.RotateBlock(block);
     }
 
 

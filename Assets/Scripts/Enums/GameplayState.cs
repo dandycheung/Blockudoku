@@ -20,6 +20,10 @@ public enum GameplayState
 
     ShowTips,
 
+    OnBlockChange,
+
+    OnBlockRotate,
+
     None
 
 }
