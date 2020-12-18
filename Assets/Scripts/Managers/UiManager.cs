@@ -39,6 +39,21 @@ public class UiManager : Singleton<UiManager>
     /// 
     /// </summary>
     [SerializeField]
+    private TipsMenu tipsMenu;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public TipsMenu TipsMenu
+    {
+        get { return this.tipsMenu; }
+        set { this.tipsMenu = value; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField]
     private PauseMenu pauseMenu;
 
     /// <summary>

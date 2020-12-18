@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [DisallowMultipleComponent , RequireComponent(typeof(CanvasGroup),typeof(Block))]
-public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
 {
     /// <summary>
     /// 
@@ -20,6 +20,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     /// <param name="eventData"></param>
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("OnBeginDrag " + eventData.ToString());
         if (!GameManager.Instance.GameState.Equals(GameState.Gameplay)) return;
         if (GameplayManager.Instance.GameplayState.Equals(GameplayState.GameOver)) return;
         if (Application.platform == RuntimePlatform.Android)
@@ -34,6 +35,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
         GameplayManager.Instance.SetGameplayState(GameplayState.OnBlockDrag);
         block = this.gameObject.GetComponent<Block>();
+        // 设置遮挡关系，当前块放最上层
         SlotManager.Instance.FindSlotOfBlock(Draggable.block).RectTransform.SetAsLastSibling();
         canvasGroup = block.gameObject.GetComponent<CanvasGroup>();
         canvasGroup.blocksRaycasts = false;
@@ -59,6 +61,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     /// <param name="eventData"></param>
     public void OnDrag(PointerEventData eventData)
     {
+        Debug.Log("OnDrag " + eventData.ToString());
         if (!GameManager.Instance.GameState.Equals(GameState.Gameplay)) return;
         if (GameplayManager.Instance.GameplayState.Equals(GameplayState.GameOver)) return;
         #if UNITY_EDITOR
@@ -95,6 +98,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log("OnEndDrag " + eventData.ToString());
         if (!GameManager.Instance.GameState.Equals(GameState.Gameplay)) return;
         if (GameplayManager.Instance.GameplayState.Equals(GameplayState.GameOver)) return;
         if (Application.platform == RuntimePlatform.Android)
@@ -120,6 +124,16 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             blockPiece.transform.localPosition -= Draggable.block.Offset;
         }
         canvasGroup.blocksRaycasts = true;
+    }
+
+    /// <summary>
+    /// 单击事件，随机更换block
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        block = this.gameObject.GetComponent<Block>();
+        BlockManager.Instance.ChangeBlock(block);
     }
 
 

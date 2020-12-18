@@ -107,6 +107,16 @@ public class ScoreManager : Singleton<ScoreManager>
     }
 
     /// <summary>
+    /// Decrease the score with the specified amount.
+    /// </summary>
+    /// <param name="ScoreIncrement"></param>
+    public void DecreaseScore(int ScoreDecrease)
+    {
+        this.currentScore -= ScoreDecrease;
+    }
+
+
+    /// <summary>
     /// 
     /// </summary>
     public void ResetCurrentScore()

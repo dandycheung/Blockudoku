@@ -109,6 +109,32 @@ public class BlockManager : Singleton<BlockManager>
     }
 
     /// <summary>
+    /// 更换Block
+    /// </summary>
+    /// <param name="oldBlock"></param>
+    /// <param name="newBlock"></param>
+    public void ChangeBlock(Block block)
+    {
+        if (ScoreManager.Instance.CurrentScore > ScoreManager.Instance.LineDeleteScore)
+        {
+            SlotManager.Instance.FindSlotOfBlock(block).IsEmpty = true;
+            ScoreManager.Instance.DecreaseScore(ScoreManager.Instance.LineDeleteScore);
+            UiManager.Instance.GameplayMenu.UpdateCurrentScore();
+            BlockManager.Instance.queuedBlocks.Remove(block);
+            SlotManager.Instance.FindSlotOfBlock(block).gameObject.SetActive(false);
+            Destroy(Draggable.block.gameObject);
+
+            SoundManager.Instance.PlayClip("Drop");
+            GameplayManager.Instance.SetGameplayState(GameplayState.OnBlockDrop);
+        }
+        else
+        {
+            // 提示成绩不足，不能消除
+            UiManager.Instance.TipsMenu.Open();
+        }
+    }
+
+    /// <summary>
     /// 
     /// </summary>
     /// <param name="block"></param>
@@ -169,7 +195,7 @@ public class BlockManager : Singleton<BlockManager>
     }
 
     /// <summary>
-    /// 
+    /// 是否可以放入面板
     /// </summary>
     /// <returns></returns>
     public bool IsBlockDroppable(Block block)

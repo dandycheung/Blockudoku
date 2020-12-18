@@ -237,6 +237,8 @@ public class GameplayManager : Singleton<GameplayManager>
                     File.Delete(Application.persistentDataPath + "/save.txt");
                 }
                 break;
+            case GameplayState.ShowTips:
+                break;
         }
     }
 

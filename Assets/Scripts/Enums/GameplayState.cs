@@ -17,7 +17,9 @@ public enum GameplayState
     GameOvered,
     
     Pause,
-    
+
+    ShowTips,
+
     None
 
 }

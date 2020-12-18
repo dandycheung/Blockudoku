@@ -72,7 +72,7 @@ public class SlotManager : Singleton<SlotManager>
     /// <summary>
     /// 
     /// </summary>
-    private void SpawnRandomBlockAtSlot(int SlotNumber)
+    private Block SpawnRandomBlockAtSlot(int SlotNumber)
     {
         Block block = BlockManager.Instance.GetRandomBlock();
         block.transform.SetParent(SlotManager.Instance.slots[SlotNumber].transform);
@@ -80,6 +80,7 @@ public class SlotManager : Singleton<SlotManager>
         BlockManager.Instance.SetInitialTransformValues(block);
         SlotManager.Instance.slots[SlotNumber].IsEmpty = false;
         BlockManager.Instance.QueuedBlocks.Add(block);
+        return block;
     }
 
     /// <summary>
@@ -119,19 +120,20 @@ public class SlotManager : Singleton<SlotManager>
     /// <returns></returns>
     public bool AreSlotsEmpty()
     {
-        bool IsEmpty = true;
+        bool IsEmpty = false;
         foreach (Slot slot in SlotManager.Instance.slots)
         {
-            if (slot.IsEmpty) continue;
-            IsEmpty = false;
-            break;
+            if (slot.IsEmpty)
+            {
+                IsEmpty = true;
+                break;
+            }
         }
-
         return IsEmpty;
     }
 
     /// <summary>
-    /// 
+    /// 随机生成3个Block放入可选区
     /// </summary>
     public void SpawnNewBlockSet()
     {
@@ -142,6 +144,30 @@ public class SlotManager : Singleton<SlotManager>
                 SlotManager.Instance.SpawnRandomBlockAtSlot(SlotManager.Instance.GetSlotIndex(slot));
             }
         }
+        SoundManager.Instance.PlayClip("Spawn");
+    }
+
+    /// <summary>
+    /// 随机更换一个Block
+    /// </summary>
+    public void RancomChangeBlock(Block oldBlock)
+    {
+        Slot slot = FindSlotOfBlock(oldBlock);
+        int SlotNumber = SlotManager.Instance.GetSlotIndex(slot);
+
+        SpawnRandomBlockAtSlot(SlotNumber);
+        //Block newBlock = BlockManager.Instance.GetRandomBlock();
+        //SlotManager.Instance.slots[SlotNumber] = newBlock;
+        // BlockManager.Instance.DropBlock2(oldBlock);
+
+
+        //Block newBlock = BlockManager.Instance.GetRandomBlock();
+        //newBlock.transform.SetParent(SlotManager.Instance.slots[SlotNumber].transform);
+        //SlotManager.Instance.slots[SlotNumber].gameObject.SetActive(true);
+        //BlockManager.Instance.SetInitialTransformValues(newBlock);
+        //SlotManager.Instance.slots[SlotNumber].IsEmpty = false;
+        //BlockManager.Instance.QueuedBlocks.Add(newBlock);
+
         SoundManager.Instance.PlayClip("Spawn");
     }
 
