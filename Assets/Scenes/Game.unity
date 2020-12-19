@@ -11464,6 +11464,7 @@ MonoBehaviour:
   - {fileID: 4249513686060830657, guid: dbb203fd95496c84b9a63897359714aa, type: 3}
   - {fileID: 4148773760753483769, guid: f4e13f2769cec804e90c58e01bbcab6e, type: 3}
   - {fileID: 538266481478593264, guid: 9b569d0181d44bf478d651f49bcd488c, type: 3}
+  - {fileID: 3359713001225814126, guid: d1d90956482ee62489a0ddc73cd187ee, type: 3}
   queuedBlocks: []
   alignSpeed: 10
 --- !u!4 &1950612484
