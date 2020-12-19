@@ -212,8 +212,8 @@ MonoBehaviour:
   blockPieces: []
   scaleSpeed: 7.5
   positioningSpeed: 5
-  xTileCount: 1
-  yTileCount: 5
+  xTileCount: 5
+  yTileCount: 1
   blockType: 4
   scaledSize: {x: 2, y: 2, z: 1}
   offset: {x: 0, y: 0, z: 0}

@@ -211,7 +211,7 @@ MonoBehaviour:
   blockPieces: []
   scaleSpeed: 7.5
   positioningSpeed: 5
-  xTileCount: 3
+  xTileCount: 2
   yTileCount: 3
   blockType: 34
   scaledSize: {x: 2, y: 2, z: 1}
