@@ -88,7 +88,7 @@ public class SlotManager : Singleton<SlotManager>
     /// </summary>
     private Block RotateBlockAtSlot(int SlotNumber)
     {
-        Block block = BlockManager.Instance.GetRotateBlock();
+        Block block = BlockManager.Instance.GetCurClickRotatedBlock();
         block.transform.SetParent(SlotManager.Instance.slots[SlotNumber].transform);
         SlotManager.Instance.slots[SlotNumber].gameObject.SetActive(true);
         BlockManager.Instance.SetInitialTransformValues(block);
@@ -162,7 +162,7 @@ public class SlotManager : Singleton<SlotManager>
     }
 
     /// <summary>
-    /// 随机生成3个Block放入可选区
+    /// 在空槽放入刚才删除之前旋转后的方块
     /// </summary>
     public void RotateBlock()
     {

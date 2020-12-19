@@ -106,14 +106,14 @@ public class BlockManager : Singleton<BlockManager>
     }
 
     /// <summary>
-    /// Gets a random block and returns it.
+    /// Gets a rotate block type and returns it.
     /// </summary>
-    /// <returns>Block.</returns>
-    public Block GetRotateBlock()
+    /// <returns>BlockType.</returns>
+    public BlockType GetRotatedBlockType(BlockType curBlockType)
     {
-        BlockType blockType = curClickBlockType;
+        BlockType rotatedBlockType = curBlockType;
 
-        switch(curClickBlockType)
+        switch (curBlockType)
         {
             case BlockType.Single:
             case BlockType.Square2x2:
@@ -121,129 +121,140 @@ public class BlockManager : Singleton<BlockManager>
             case BlockType.Cross3x3:
                 break;
             case BlockType.DoubleLine2x1ZeroDegree:
-                blockType = BlockType.DoubleLine1x2NintyDegree;
+                rotatedBlockType = BlockType.DoubleLine1x2NintyDegree;
                 break;
             case BlockType.DoubleLine1x2NintyDegree:
-                blockType = BlockType.DoubleLine2x1ZeroDegree;
+                rotatedBlockType = BlockType.DoubleLine2x1ZeroDegree;
                 break;
             case BlockType.TripleLine3x1ZeroDegree:
-                blockType = BlockType.TripleLine1x3NintyDegree;
+                rotatedBlockType = BlockType.TripleLine1x3NintyDegree;
                 break;
             case BlockType.TripleLine1x3NintyDegree:
-                blockType = BlockType.TripleLine3x1ZeroDegree;
+                rotatedBlockType = BlockType.TripleLine3x1ZeroDegree;
                 break;
             case BlockType.QuadrupleLine4x1ZeroDegree:
-                blockType = BlockType.QuadrupleLine1x4NintyDegree;
+                rotatedBlockType = BlockType.QuadrupleLine1x4NintyDegree;
                 break;
             case BlockType.QuadrupleLine1x4NintyDegree:
-                blockType = BlockType.QuadrupleLine4x1ZeroDegree;
+                rotatedBlockType = BlockType.QuadrupleLine4x1ZeroDegree;
                 break;
             case BlockType.QuintetLine5x1ZeroDegree:
-                blockType = BlockType.QuintetLine1x5NintyDegree;
+                rotatedBlockType = BlockType.QuintetLine1x5NintyDegree;
                 break;
             case BlockType.QuintetLine1x5NintyDegree:
-                blockType = BlockType.QuintetLine5x1ZeroDegree;
+                rotatedBlockType = BlockType.QuintetLine5x1ZeroDegree;
                 break;
             case BlockType.ShortL2x2ZeroDegree:
-                blockType = BlockType.ShortL2x2NintyDegree;
+                rotatedBlockType = BlockType.ShortL2x2NintyDegree;
                 break;
             case BlockType.ShortL2x2NintyDegree:
-                blockType = BlockType.ShortL2x2HundredAndEightyDegree;
+                rotatedBlockType = BlockType.ShortL2x2HundredAndEightyDegree;
                 break;
             case BlockType.ShortL2x2HundredAndEightyDegree:
-                blockType = BlockType.ShortL2x2TwoHundredAndSeventyDegree;
+                rotatedBlockType = BlockType.ShortL2x2TwoHundredAndSeventyDegree;
                 break;
             case BlockType.ShortL2x2TwoHundredAndSeventyDegree:
-                blockType = BlockType.ShortL2x2ZeroDegree;
+                rotatedBlockType = BlockType.ShortL2x2ZeroDegree;
                 break;
             case BlockType.LongL3x3ZeroDegree:
-                blockType = BlockType.LongL3x3NintyDegree;
+                rotatedBlockType = BlockType.LongL3x3NintyDegree;
                 break;
             case BlockType.LongL3x3NintyDegree:
-                blockType = BlockType.LongL3x3HundredAndEightyDegree;
+                rotatedBlockType = BlockType.LongL3x3HundredAndEightyDegree;
                 break;
             case BlockType.LongL3x3HundredAndEightyDegree:
-                blockType = BlockType.LongL3x3TwoHundredAndSeventyDegree;
+                rotatedBlockType = BlockType.LongL3x3TwoHundredAndSeventyDegree;
                 break;
             case BlockType.LongL3x3TwoHundredAndSeventyDegree:
-                blockType = BlockType.LongL3x3ZeroDegree;
+                rotatedBlockType = BlockType.LongL3x3ZeroDegree;
                 break;
             case BlockType.ShortT2x3ZeroDegree:
-                blockType = BlockType.ShortT3x2NintyDegree;
+                rotatedBlockType = BlockType.ShortT3x2NintyDegree;
                 break;
             case BlockType.ShortT3x2NintyDegree:
-                blockType = BlockType.ShortT2x3HundredAndEightyDegree;
+                rotatedBlockType = BlockType.ShortT2x3HundredAndEightyDegree;
                 break;
             case BlockType.ShortT2x3HundredAndEightyDegree:
-                blockType = BlockType.ShortT3x2TwoHundredAndSeventyDegree;
+                rotatedBlockType = BlockType.ShortT3x2TwoHundredAndSeventyDegree;
                 break;
             case BlockType.ShortT3x2TwoHundredAndSeventyDegree:
-                blockType = BlockType.ShortT2x3ZeroDegree;
+                rotatedBlockType = BlockType.ShortT2x3ZeroDegree;
                 break;
             case BlockType.Shorth2x3ZeroDegree:
-                blockType = BlockType.Shorth3x2NintyDegree;
+                rotatedBlockType = BlockType.Shorth3x2NintyDegree;
                 break;
             case BlockType.Shorth3x2NintyDegree:
-                blockType = BlockType.Shorth2x3ZeroDegree;
+                rotatedBlockType = BlockType.Shorth2x3ZeroDegree;
                 break;
             case BlockType.Shorth2x3HundredAndEightyDegree:
-                blockType = BlockType.Shorth3x2TwoHundredAndSeventyDegree;
+                rotatedBlockType = BlockType.Shorth3x2TwoHundredAndSeventyDegree;
                 break;
             case BlockType.Shorth3x2TwoHundredAndSeventyDegree:
-                blockType = BlockType.Shorth2x3HundredAndEightyDegree;
+                rotatedBlockType = BlockType.Shorth2x3HundredAndEightyDegree;
                 break;
             case BlockType.LongT3x3ZeroDegree:
-                blockType = BlockType.LongT3x3NintyDegree;
+                rotatedBlockType = BlockType.LongT3x3NintyDegree;
                 break;
             case BlockType.LongT3x3NintyDegree:
-                blockType = BlockType.LongT3x3HundredAndEightyDegree;
+                rotatedBlockType = BlockType.LongT3x3HundredAndEightyDegree;
                 break;
             case BlockType.LongT3x3HundredAndEightyDegree:
-                blockType = BlockType.LongT3x3TwoHundredAndSeventyDegree;
+                rotatedBlockType = BlockType.LongT3x3TwoHundredAndSeventyDegree;
                 break;
             case BlockType.LongT3x3TwoHundredAndSeventyDegree:
-                blockType = BlockType.LongT3x3ZeroDegree;
+                rotatedBlockType = BlockType.LongT3x3ZeroDegree;
                 break;
             case BlockType.Cross2x2ZeroDegree:
-                blockType = BlockType.Cross2x2HundredAndEightyDegree;
+                rotatedBlockType = BlockType.Cross2x2HundredAndEightyDegree;
                 break;
             case BlockType.Cross2x2HundredAndEightyDegree:
-                blockType = BlockType.Cross2x2ZeroDegree;
+                rotatedBlockType = BlockType.Cross2x2ZeroDegree;
                 break;
             case BlockType.MidL3x3ZeroDegree:
-                blockType = BlockType.MidL3x3NintyDegree;
+                rotatedBlockType = BlockType.MidL3x3NintyDegree;
                 break;
             case BlockType.MidL3x3NintyDegree:
-                blockType = BlockType.MidL3x3HundredAndEightyDegree;
+                rotatedBlockType = BlockType.MidL3x3HundredAndEightyDegree;
                 break;
             case BlockType.MidL3x3HundredAndEightyDegree:
-                blockType = BlockType.MidL3x3TwoHundredAndSeventyDegree;
+                rotatedBlockType = BlockType.MidL3x3TwoHundredAndSeventyDegree;
                 break;
             case BlockType.MidL3x3TwoHundredAndSeventyDegree:
-                blockType = BlockType.MidL3x3ZeroDegree;
+                rotatedBlockType = BlockType.MidL3x3ZeroDegree;
                 break;
             case BlockType.Mid2L3x3ZeroDegree:
-                blockType = BlockType.Mid2L3x3NintyDegree;
+                rotatedBlockType = BlockType.Mid2L3x3NintyDegree;
                 break;
             case BlockType.Mid2L3x3NintyDegree:
-                blockType = BlockType.Mid2L3x3HundredAndEightyDegree;
+                rotatedBlockType = BlockType.Mid2L3x3HundredAndEightyDegree;
                 break;
             case BlockType.Mid2L3x3HundredAndEightyDegree:
-                blockType = BlockType.Mid2L3x3TwoHundredAndSeventyDegree;
+                rotatedBlockType = BlockType.Mid2L3x3TwoHundredAndSeventyDegree;
                 break;
             case BlockType.Mid2L3x3TwoHundredAndSeventyDegree:
-                blockType = BlockType.Mid2L3x3ZeroDegree;
+                rotatedBlockType = BlockType.Mid2L3x3ZeroDegree;
                 break;
         }
 
+        return rotatedBlockType;
+    }
+
+    /// <summary>
+    /// Gets a rotate block and returns it.
+    /// </summary>
+    /// <returns>Block.</returns>
+    public Block GetCurClickRotatedBlock()
+    {
+        BlockType rotatedBlockType = GetRotatedBlockType(curClickBlockType);
+
         foreach (Block block in BlockManager.Instance.AvailableBlocks)
         {
-            if (block.BlockType.Equals(blockType))
+            if (block.BlockType.Equals(rotatedBlockType))
             {
                 return GetBlock(block);
             }
         }
-
+        // 不应该会执行到这里，属于异常情况，统一返回第一个方块
         return GetBlock(0);
     }
 
@@ -308,24 +319,20 @@ public class BlockManager : Singleton<BlockManager>
     /// <param name="newBlock"></param>
     public void RotateBlock(Block block)
     {
-        // if (ScoreManager.Instance.CurrentScore > ScoreManager.Instance.LineDeleteScore)
+        BlockType rotatedBlockType = GetRotatedBlockType(block.BlockType);
+        if (rotatedBlockType != block.BlockType)
         {
+            // 如果当前方块旋转有区别，先从槽中删除，然后再生成一个旋转后的方块放入
             curClickBlockType = block.BlockType;
             SlotManager.Instance.FindSlotOfBlock(block).IsEmpty = true;
-            //ScoreManager.Instance.DecreaseScore(ScoreManager.Instance.LineDeleteScore);
-            //UiManager.Instance.GameplayMenu.UpdateCurrentScore();
             BlockManager.Instance.queuedBlocks.Remove(block);
             SlotManager.Instance.FindSlotOfBlock(block).gameObject.SetActive(false);
             Destroy(Draggable.block.gameObject);
-
             SoundManager.Instance.PlayClip("Drop");
+
+            // 异步执行生成旋转后图形放入空槽
             GameplayManager.Instance.SetGameplayState(GameplayState.OnBlockRotate);
         }
-        //else
-        //{
-        //    // 提示成绩不足，不能消除
-        //    UiManager.Instance.TipsMenu.Open();
-        //}
     }
     /// <summary>
     /// 
