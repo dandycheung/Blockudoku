@@ -36,20 +36,6 @@ public class ScoreManager : Singleton<ScoreManager>
     }
 
     /// <summary>
-    /// 
-    /// </summary>
-    [SerializeField, Range(1, 250)]
-    private int squareDeleteScore = 100;
-    /// <summary>
-    /// 
-    /// </summary>
-    public int SquareDeleteScore
-    {
-        get { return this.squareDeleteScore; }
-        set { this.squareDeleteScore = value; }
-    }
-
-    /// <summary>
     /// Field of the score of game.
     /// </summary>
     [Space(5f), Header("Properties"), SerializeField]

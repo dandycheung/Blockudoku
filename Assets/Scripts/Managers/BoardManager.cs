@@ -200,6 +200,7 @@ public class BoardManager : Singleton<BoardManager>
     /// </summary>
     private void FindRows(Board board)
     {
+        board.Rows.Clear();
         for (int rowNumber = 1; rowNumber <= board.RowCount; rowNumber++)
         {
             board.Rows.Add(BoardManager.Instance.FindRow(rowNumber));
@@ -211,6 +212,7 @@ public class BoardManager : Singleton<BoardManager>
     /// </summary>
     private void FindColumns(Board board)
     {
+        board.Columns.Clear();
         for (int columnNumber = 1; columnNumber <= board.RowCount; columnNumber++)
         {
             board.Columns.Add(BoardManager.Instance.FindColumn(columnNumber));
@@ -222,6 +224,7 @@ public class BoardManager : Singleton<BoardManager>
     /// </summary>
     private void FindSquares(Board board)
     {
+        board.Squares.Clear();
         for (int squareNumber = 1; squareNumber <= board.RowCount; squareNumber++)
         {
             board.Squares.Add(BoardManager.Instance.FindSquare(squareNumber));

@@ -188,16 +188,14 @@ public class GameplayManager : Singleton<GameplayManager>
                 GameplayManager.Instance.SetGameplayState(GameplayState.GameOver);
                 break;
             case GameplayState.OnDelete:
-
+                // 一次消除多组9个方块，成绩翻倍
+                int clearBlockCount = 0;
                 if (BoardManager.Instance.RowsWillBeCleared.Count > 0)
                 {
                     foreach (Row row in BoardManager.Instance.RowsWillBeCleared)
                     {
                         TileManager.Instance.ClearFlaggedTilesOfRow(row);
-                        ScoreManager.Instance.IncreseScore(ScoreManager.Instance.LineDeleteScore);
-                        ScoreManager.Instance.UpdateHighScore();
-                        UiManager.Instance.GameplayMenu.UpdateCurrentScore();
-                        UiManager.Instance.GameplayMenu.UpdateHighScore();
+                        clearBlockCount++;
                     }
                     BoardManager.Instance.RowsWillBeCleared.Clear();
                 }
@@ -207,10 +205,7 @@ public class GameplayManager : Singleton<GameplayManager>
                     foreach (Column column in BoardManager.Instance.ColumnsWillBeCleared)
                     {
                         TileManager.Instance.ClearFlaggedTilesOfColumn(column);
-                        ScoreManager.Instance.IncreseScore(ScoreManager.Instance.LineDeleteScore);
-                        ScoreManager.Instance.UpdateHighScore();
-                        UiManager.Instance.GameplayMenu.UpdateCurrentScore();
-                        UiManager.Instance.GameplayMenu.UpdateHighScore();
+                        clearBlockCount++;
                     }
                     BoardManager.Instance.ColumnsWillBeCleared.Clear();
                 }
@@ -220,12 +215,18 @@ public class GameplayManager : Singleton<GameplayManager>
                     foreach (Square square in BoardManager.Instance.SquaresWillBeCleared)
                     {
                         TileManager.Instance.ClearFlaggedTilesOfSquare(square);
-                        ScoreManager.Instance.IncreseScore(ScoreManager.Instance.SquareDeleteScore);
-                        ScoreManager.Instance.UpdateHighScore();
-                        UiManager.Instance.GameplayMenu.UpdateCurrentScore();
-                        UiManager.Instance.GameplayMenu.UpdateHighScore();
+                        clearBlockCount++;
                     }
                     BoardManager.Instance.SquaresWillBeCleared.Clear();
+                }
+
+                if (clearBlockCount > 0)
+                {
+                    float score = ScoreManager.Instance.LineDeleteScore * Mathf.Pow(2, clearBlockCount - 1);
+                    ScoreManager.Instance.IncreseScore((int)score);
+                    ScoreManager.Instance.UpdateHighScore();
+                    UiManager.Instance.GameplayMenu.UpdateCurrentScore();
+                    UiManager.Instance.GameplayMenu.UpdateHighScore();
                 }
 
                 if (BlockManager.Instance.QueuedBlocks.Count > 0)
