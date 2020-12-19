@@ -102,6 +102,7 @@ public class BlockManager : Singleton<BlockManager>
     public Block GetRandomBlock()
     {
         int RandomIndex = Random.Range(0, BlockManager.Instance.availableBlocks.Count);
+        // RandomIndex = 12;
         return BlockManager.Instance.GetBlock(RandomIndex);
     }
 

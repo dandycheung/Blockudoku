@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using System;
 
 /// <summary>
 /// Manages the gameplay sequence of game.
@@ -87,24 +88,9 @@ public class GameplayManager : Singleton<GameplayManager>
                     BoardManager.Instance.InitializeBoard(BoardManager.Instance.AvailableBoards[0]);
                     SlotManager.Instance.ClearSlots();
                     SaveManager.Instance.LoadProgress();
+                    SaveManager.Instance.LoadPlayerData();
                     UiManager.Instance.GameplayMenu.UpdateCurrentScore();
-                    GameplayManager.Instance.SetGameplayState(GameplayState.None);
-
-                    // 如果有游戏存档，检查是否游戏已结束，防止在游戏结束时未及时判断出来导致无法重新开始游戏的问题
-                    if (BlockManager.Instance.QueuedBlocks.Count > 0)
-                    {
-                        foreach (Block block in BlockManager.Instance.QueuedBlocks)
-                        {
-                            if (BlockManager.Instance.IsBlockFitsToBoard(block))
-                            {
-                                GameplayManager.Instance.StartGameplay();
-                                GameplayManager.Instance.SetGameplayState(GameplayState.None);
-                                return;
-                            }
-                        }
-                        GameplayManager.Instance.SetGameplayState(GameplayState.GameOver);
-                        return;
-                    }
+                    UiManager.Instance.GameplayMenu.UpdateHighScore();
                 }
 
                 GameplayManager.Instance.StartGameplay();
@@ -174,18 +160,7 @@ public class GameplayManager : Singleton<GameplayManager>
                     return;
                 }
 
-                if (BlockManager.Instance.QueuedBlocks.Count > 0)
-                {
-                    foreach (Block block in BlockManager.Instance.QueuedBlocks)
-                    {
-                        if (BlockManager.Instance.IsBlockFitsToBoard(block))
-                        {
-                            GameplayManager.Instance.SetGameplayState(GameplayState.None);
-                            return;
-                        }
-                    }
-                }
-                GameplayManager.Instance.SetGameplayState(GameplayState.GameOver);
+                GameplayManager.Instance.SetGameplayState(CheckGameState());
                 break;
             case GameplayState.OnDelete:
                 // 一次消除多组9个方块，成绩翻倍
@@ -229,18 +204,7 @@ public class GameplayManager : Singleton<GameplayManager>
                     UiManager.Instance.GameplayMenu.UpdateHighScore();
                 }
 
-                if (BlockManager.Instance.QueuedBlocks.Count > 0)
-                {
-                    foreach (Block block in BlockManager.Instance.QueuedBlocks)
-                    {
-                        if (BlockManager.Instance.IsBlockFitsToBoard(block))
-                        {
-                            GameplayManager.Instance.SetGameplayState(GameplayState.None);
-                            return;
-                        }
-                    }
-                }
-                GameplayManager.Instance.SetGameplayState(GameplayState.GameOver);
+                GameplayManager.Instance.SetGameplayState(CheckGameState());
                 break;
 
             case GameplayState.GameOver:
@@ -256,6 +220,25 @@ public class GameplayManager : Singleton<GameplayManager>
             case GameplayState.ShowTips:
                 break;
         }
+    }
+
+    /// <summary>
+    /// 检查游戏是否结束
+    /// </summary>
+    /// <returns></returns>
+    private GameplayState CheckGameState()
+    {
+        if (BlockManager.Instance.QueuedBlocks.Count > 0)
+        {
+            foreach (Block block in BlockManager.Instance.QueuedBlocks)
+            {
+                if (BlockManager.Instance.IsBlockFitsToBoard(block))
+                {
+                    return GameplayState.None;
+                }
+            }
+        }
+        return GameplayState.GameOver;
     }
 
     /// <summary>
