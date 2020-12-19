@@ -236,6 +236,42 @@ public class GameplayManager : Singleton<GameplayManager>
                 {
                     return GameplayState.None;
                 }
+
+                // 第一次旋转90度，共计旋转90度
+                BlockType rotateBlockType90 = BlockManager.Instance.GetRotatedBlockType(block.BlockType);
+                if (rotateBlockType90 != block.BlockType)
+                {
+                    Block rotateBlock90 = BlockManager.Instance.getBlockByBlockType(rotateBlockType90);
+                    if (BlockManager.Instance.IsBlockFitsToBoard(rotateBlock90))
+                    {
+                        return GameplayState.None;
+                    }
+
+                    // 第二次旋转90度，共计旋转180度
+                    BlockType rotateBlockType180 = BlockManager.Instance.GetRotatedBlockType(block.BlockType);
+                    if (rotateBlockType180 != block.BlockType)
+                    {
+                        Block rotateBlock180 = BlockManager.Instance.getBlockByBlockType(rotateBlockType180);
+                        if (BlockManager.Instance.IsBlockFitsToBoard(rotateBlock180))
+                        {
+                            return GameplayState.None;
+                        }
+
+                        // 第三次旋转90度，共计旋转270度
+                        BlockType rotateBlockType270 = BlockManager.Instance.GetRotatedBlockType(block.BlockType);
+                        if (rotateBlockType270 != block.BlockType)
+                        {
+                            Block rotateBlock270 = BlockManager.Instance.getBlockByBlockType(rotateBlockType270);
+                            if (BlockManager.Instance.IsBlockFitsToBoard(rotateBlock270))
+                            {
+                                return GameplayState.None;
+                            }
+
+                            // 第四次旋转90度，已经旋转360度，无需处理，已经转回原来位置了
+                        }
+                    }
+                }
+
             }
         }
         return GameplayState.GameOver;

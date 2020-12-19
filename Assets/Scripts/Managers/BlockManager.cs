@@ -241,22 +241,31 @@ public class BlockManager : Singleton<BlockManager>
     }
 
     /// <summary>
+    /// 根据BlockType获取Block
+    /// </summary>
+    /// <param name="blockType"></param>
+    /// <returns></returns>
+    public Block getBlockByBlockType(BlockType blockType)
+    {
+        foreach (Block block in BlockManager.Instance.AvailableBlocks)
+        {
+            if (block.BlockType.Equals(blockType))
+            {
+                return GetBlock(block);
+            }
+        }
+        // 不应该会执行到这里，属于异常情况
+        throw new System.NotImplementedException();
+    }
+
+    /// <summary>
     /// Gets a rotate block and returns it.
     /// </summary>
     /// <returns>Block.</returns>
     public Block GetCurClickRotatedBlock()
     {
         BlockType rotatedBlockType = GetRotatedBlockType(curClickBlockType);
-
-        foreach (Block block in BlockManager.Instance.AvailableBlocks)
-        {
-            if (block.BlockType.Equals(rotatedBlockType))
-            {
-                return GetBlock(block);
-            }
-        }
-        // 不应该会执行到这里，属于异常情况，统一返回第一个方块
-        return GetBlock(0);
+        return getBlockByBlockType(rotatedBlockType);
     }
 
     /// <summary>
