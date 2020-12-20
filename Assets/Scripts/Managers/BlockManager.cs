@@ -120,6 +120,7 @@ public class BlockManager : Singleton<BlockManager>
             case BlockType.Square2x2:
             case BlockType.Square3x3:
             case BlockType.Cross3x3:
+            case BlockType.Z5T14:
                 break;
             case BlockType.DoubleLine2x1ZeroDegree:
                 rotatedBlockType = BlockType.DoubleLine1x2NintyDegree;
@@ -234,6 +235,162 @@ public class BlockManager : Singleton<BlockManager>
                 break;
             case BlockType.Mid2L3x3TwoHundredAndSeventyDegree:
                 rotatedBlockType = BlockType.Mid2L3x3ZeroDegree;
+                break;
+            case BlockType.Z5T02A0:
+                rotatedBlockType = BlockType.Z5T02A90;
+                break;
+            case BlockType.Z5T02A90:
+                rotatedBlockType = BlockType.Z5T02A180;
+                break;
+            case BlockType.Z5T02A180:
+                rotatedBlockType = BlockType.Z5T02A270;
+                break;
+            case BlockType.Z5T02A270:
+                rotatedBlockType = BlockType.Z5T02A0;
+                break;
+            case BlockType.Z5T03A0:
+                rotatedBlockType = BlockType.Z5T03A90;
+                break;
+            case BlockType.Z5T03A90:
+                rotatedBlockType = BlockType.Z5T03A180;
+                break;
+            case BlockType.Z5T03A180:
+                rotatedBlockType = BlockType.Z5T03A270;
+                break;
+            case BlockType.Z5T03A270:
+                rotatedBlockType = BlockType.Z5T03A0;
+                break;
+            case BlockType.Z5T04A0:
+                rotatedBlockType = BlockType.Z5T04A90;
+                break;
+            case BlockType.Z5T04A90:
+                rotatedBlockType = BlockType.Z5T04A180;
+                break;
+            case BlockType.Z5T04A180:
+                rotatedBlockType = BlockType.Z5T04A270;
+                break;
+            case BlockType.Z5T04A270:
+                rotatedBlockType = BlockType.Z5T04A0;
+                break;
+            case BlockType.Z5T05A0:
+                rotatedBlockType = BlockType.Z5T05A90;
+                break;
+            case BlockType.Z5T05A90:
+                rotatedBlockType = BlockType.Z5T05A180;
+                break;
+            case BlockType.Z5T05A180:
+                rotatedBlockType = BlockType.Z5T05A270;
+                break;
+            case BlockType.Z5T05A270:
+                rotatedBlockType = BlockType.Z5T05A0;
+                break;
+            case BlockType.Z5T06A0:
+                rotatedBlockType = BlockType.Z5T06A90;
+                break;
+            case BlockType.Z5T06A90:
+                rotatedBlockType = BlockType.Z5T06A180;
+                break;
+            case BlockType.Z5T06A180:
+                rotatedBlockType = BlockType.Z5T06A270;
+                break;
+            case BlockType.Z5T06A270:
+                rotatedBlockType = BlockType.Z5T06A0;
+                break;
+            case BlockType.Z5T07A0:
+                rotatedBlockType = BlockType.Z5T07A90;
+                break;
+            case BlockType.Z5T07A90:
+                rotatedBlockType = BlockType.Z5T07A180;
+                break;
+            case BlockType.Z5T07A180:
+                rotatedBlockType = BlockType.Z5T07A270;
+                break;
+            case BlockType.Z5T07A270:
+                rotatedBlockType = BlockType.Z5T07A0;
+                break;
+            case BlockType.Z5T08A0:
+                rotatedBlockType = BlockType.Z5T08A90;
+                break;
+            case BlockType.Z5T08A90:
+                rotatedBlockType = BlockType.Z5T08A180;
+                break;
+            case BlockType.Z5T08A180:
+                rotatedBlockType = BlockType.Z5T08A270;
+                break;
+            case BlockType.Z5T08A270:
+                rotatedBlockType = BlockType.Z5T08A0;
+                break;
+            case BlockType.Z5T10A0:
+                rotatedBlockType = BlockType.Z5T10A90;
+                break;
+            case BlockType.Z5T10A90:
+                rotatedBlockType = BlockType.Z5T10A180;
+                break;
+            case BlockType.Z5T10A180:
+                rotatedBlockType = BlockType.Z5T10A270;
+                break;
+            case BlockType.Z5T10A270:
+                rotatedBlockType = BlockType.Z5T10A0;
+                break;
+            case BlockType.Z5T11A0:
+                rotatedBlockType = BlockType.Z5T11A90;
+                break;
+            case BlockType.Z5T11A90:
+                rotatedBlockType = BlockType.Z5T11A0;
+                break;
+            case BlockType.Z5T12A0:
+                rotatedBlockType = BlockType.Z5T12A90;
+                break;
+            case BlockType.Z5T12A90:
+                rotatedBlockType = BlockType.Z5T12A0;
+                break;
+            case BlockType.Z5T13A0:
+                rotatedBlockType = BlockType.Z5T13A90;
+                break;
+            case BlockType.Z5T13A90:
+                rotatedBlockType = BlockType.Z5T13A180;
+                break;
+            case BlockType.Z5T13A180:
+                rotatedBlockType = BlockType.Z5T13A270;
+                break;
+            case BlockType.Z5T13A270:
+                rotatedBlockType = BlockType.Z5T13A0;
+                break;
+            case BlockType.Z5T15A0:
+                rotatedBlockType = BlockType.Z5T15A90;
+                break;
+            case BlockType.Z5T15A90:
+                rotatedBlockType = BlockType.Z5T15A180;
+                break;
+            case BlockType.Z5T15A180:
+                rotatedBlockType = BlockType.Z5T15A270;
+                break;
+            case BlockType.Z5T15A270:
+                rotatedBlockType = BlockType.Z5T15A0;
+                break;
+            case BlockType.Z5T18A0:
+                rotatedBlockType = BlockType.Z5T18A90;
+                break;
+            case BlockType.Z5T18A90:
+                rotatedBlockType = BlockType.Z5T18A180;
+                break;
+            case BlockType.Z5T18A180:
+                rotatedBlockType = BlockType.Z5T18A270;
+                break;
+            case BlockType.Z5T18A270:
+                rotatedBlockType = BlockType.Z5T18A0;
+                break;
+            case BlockType.Z5T19A0:
+                rotatedBlockType = BlockType.Z5T19A90;
+                break;
+            case BlockType.Z5T19A90:
+                rotatedBlockType = BlockType.Z5T19A180;
+                break;
+            case BlockType.Z5T19A180:
+                rotatedBlockType = BlockType.Z5T19A270;
+                break;
+            case BlockType.Z5T19A270:
+                rotatedBlockType = BlockType.Z5T19A0;
                 break;
         }
 
