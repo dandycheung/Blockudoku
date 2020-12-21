@@ -104,7 +104,7 @@ public class SlotManager : Singleton<SlotManager>
     /// <param name="blockType"></param>
     public void SpawnBlockAtSlot(int SlotNumber, BlockType blockType)
     {
-        foreach (Block block in BlockManager.Instance.AvailableBlocks)
+        foreach (Block block in BlockManager.Instance.CurAvailableBlocks)
         {
             if (block.BlockType.Equals(blockType))
             {

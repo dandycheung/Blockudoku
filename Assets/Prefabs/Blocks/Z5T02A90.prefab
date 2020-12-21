@@ -304,7 +304,7 @@ MonoBehaviour:
   positioningSpeed: 5
   xTileCount: 2
   yTileCount: 4
-  blockType: 43
+  blockType: 33
   scaledSize: {x: 2, y: 2, z: 1}
   offset: {x: 0, y: 0, z: 0}
 --- !u!1 &4249513686615024282

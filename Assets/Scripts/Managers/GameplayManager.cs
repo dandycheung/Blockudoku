@@ -51,6 +51,7 @@ public class GameplayManager : Singleton<GameplayManager>
     /// </summary>
     private IEnumerator StartGameplaySequence()
     {
+        BlockManager.Instance.InitSet();
         ScoreManager.Instance.CurrentScore = 0;
         BoardManager.Instance.InitializeBoard(BoardManager.Instance.AvailableBoards[0]);
         SlotManager.Instance.ClearSlots();

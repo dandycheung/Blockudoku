@@ -21,8 +21,71 @@ public class BlockManager : Singleton<BlockManager>
     /// </summary>
     public List<Block> AvailableBlocks
     {
-        get { return BlockManager.Instance.availableBlocks; }
+        get {
+            return BlockManager.Instance.availableBlocks; 
+        }
         private set { BlockManager.Instance.availableBlocks = value; }
+    }
+
+    /// <summary>
+    /// Field of the available blocks of game.
+    /// </summary>
+    [Space(5f), Header("Properties"), SerializeField]
+    private List<Block> curAvailableBlocks = new List<Block>();
+
+    /// <summary>
+    /// Property of the cur available blocks of game.
+    /// </summary>
+    public List<Block> CurAvailableBlocks
+    {
+        get { return BlockManager.Instance.curAvailableBlocks; }
+        private set { BlockManager.Instance.curAvailableBlocks = value; }
+    }
+
+    /// <summary>
+    /// Field of the level easy blocks of game.
+    /// </summary>
+    [Space(5f), Header("Properties"), SerializeField]
+    private List<Block> levelEasyBlocks = new List<Block>();
+
+    /// <summary>
+    /// Property of the available blocks of game.
+    /// </summary>
+    public List<Block> LevelEasyBlocks
+    {
+        get { return BlockManager.Instance.levelEasyBlocks; }
+        private set { BlockManager.Instance.levelEasyBlocks = value; }
+    }
+
+    /// <summary>
+    /// Field of the level normal blocks of game.
+    /// </summary>
+    [Space(5f), Header("Properties"), SerializeField]
+    private List<Block> levelNormalBlocks = new List<Block>();
+
+    /// <summary>
+    /// Property of the available blocks of game.
+    /// </summary>
+    public List<Block> LevelNormalBlocks
+    {
+        get { return BlockManager.Instance.levelNormalBlocks; }
+        private set { BlockManager.Instance.levelNormalBlocks = value; }
+    }
+
+    internal void InitSet()
+    {
+        if (SetManager.Instance.LevelSet == 1)
+        {
+            BlockManager.Instance.curAvailableBlocks = BlockManager.Instance.levelEasyBlocks;
+        }
+        if (SetManager.Instance.LevelSet == 2)
+        {
+            BlockManager.Instance.curAvailableBlocks = BlockManager.Instance.levelNormalBlocks;
+        }
+        if (SetManager.Instance.LevelSet == 3)
+        {
+            BlockManager.Instance.curAvailableBlocks = BlockManager.Instance.AvailableBlocks;
+        }
     }
 
     /// <summary>
@@ -79,7 +142,7 @@ public class BlockManager : Singleton<BlockManager>
     /// <returns>Block.</returns>
     private Block GetBlock(int BlockIndex)
     {
-        Block block = Instantiate(BlockManager.Instance.availableBlocks[BlockIndex]);
+        Block block = Instantiate(BlockManager.Instance.curAvailableBlocks[BlockIndex]);
         return block;
     }
 
@@ -101,7 +164,8 @@ public class BlockManager : Singleton<BlockManager>
     /// <returns>Block.</returns>
     public Block GetRandomBlock()
     {
-        int RandomIndex = Random.Range(0, BlockManager.Instance.availableBlocks.Count);
+        // 根据难度等级，分别从对应的数组中随机补充方块
+        int RandomIndex = Random.Range(0, BlockManager.Instance.CurAvailableBlocks.Count);
         // RandomIndex = 12;
         return BlockManager.Instance.GetBlock(RandomIndex);
     }
@@ -116,125 +180,124 @@ public class BlockManager : Singleton<BlockManager>
 
         switch (curBlockType)
         {
-            case BlockType.Single:
-            case BlockType.Square2x2:
-            case BlockType.Square3x3:
-            case BlockType.Cross3x3:
+            case BlockType.Z1T01:
+            case BlockType.Z4T07:
+            case BlockType.Z5T17:
             case BlockType.Z5T14:
                 break;
-            case BlockType.DoubleLine2x1ZeroDegree:
-                rotatedBlockType = BlockType.DoubleLine1x2NintyDegree;
+            case BlockType.Z2T01A0:
+                rotatedBlockType = BlockType.Z2T01A90;
                 break;
-            case BlockType.DoubleLine1x2NintyDegree:
-                rotatedBlockType = BlockType.DoubleLine2x1ZeroDegree;
+            case BlockType.Z2T01A90:
+                rotatedBlockType = BlockType.Z2T01A0;
                 break;
-            case BlockType.TripleLine3x1ZeroDegree:
-                rotatedBlockType = BlockType.TripleLine1x3NintyDegree;
+            case BlockType.Z3T01A0:
+                rotatedBlockType = BlockType.Z3T01A90;
                 break;
-            case BlockType.TripleLine1x3NintyDegree:
-                rotatedBlockType = BlockType.TripleLine3x1ZeroDegree;
+            case BlockType.Z3T01A90:
+                rotatedBlockType = BlockType.Z3T01A0;
                 break;
-            case BlockType.QuadrupleLine4x1ZeroDegree:
-                rotatedBlockType = BlockType.QuadrupleLine1x4NintyDegree;
+            case BlockType.Z4T01A0:
+                rotatedBlockType = BlockType.Z4T01A90;
                 break;
-            case BlockType.QuadrupleLine1x4NintyDegree:
-                rotatedBlockType = BlockType.QuadrupleLine4x1ZeroDegree;
+            case BlockType.Z4T01A90:
+                rotatedBlockType = BlockType.Z4T01A0;
                 break;
-            case BlockType.QuintetLine5x1ZeroDegree:
-                rotatedBlockType = BlockType.QuintetLine1x5NintyDegree;
+            case BlockType.Z5T01A0:
+                rotatedBlockType = BlockType.Z5T01A90;
                 break;
-            case BlockType.QuintetLine1x5NintyDegree:
-                rotatedBlockType = BlockType.QuintetLine5x1ZeroDegree;
+            case BlockType.Z5T01A90:
+                rotatedBlockType = BlockType.Z5T01A0;
                 break;
-            case BlockType.ShortL2x2ZeroDegree:
-                rotatedBlockType = BlockType.ShortL2x2NintyDegree;
+            case BlockType.Z3T02A0:
+                rotatedBlockType = BlockType.Z3T02A90;
                 break;
-            case BlockType.ShortL2x2NintyDegree:
-                rotatedBlockType = BlockType.ShortL2x2HundredAndEightyDegree;
+            case BlockType.Z3T02A90:
+                rotatedBlockType = BlockType.Z3T02A180;
                 break;
-            case BlockType.ShortL2x2HundredAndEightyDegree:
-                rotatedBlockType = BlockType.ShortL2x2TwoHundredAndSeventyDegree;
+            case BlockType.Z3T02A180:
+                rotatedBlockType = BlockType.Z3T02A270;
                 break;
-            case BlockType.ShortL2x2TwoHundredAndSeventyDegree:
-                rotatedBlockType = BlockType.ShortL2x2ZeroDegree;
+            case BlockType.Z3T02A270:
+                rotatedBlockType = BlockType.Z3T02A0;
                 break;
-            case BlockType.LongL3x3ZeroDegree:
-                rotatedBlockType = BlockType.LongL3x3NintyDegree;
+            case BlockType.Z5T16A0:
+                rotatedBlockType = BlockType.Z5T16A90;
                 break;
-            case BlockType.LongL3x3NintyDegree:
-                rotatedBlockType = BlockType.LongL3x3HundredAndEightyDegree;
+            case BlockType.Z5T16A90:
+                rotatedBlockType = BlockType.Z5T16A180;
                 break;
-            case BlockType.LongL3x3HundredAndEightyDegree:
-                rotatedBlockType = BlockType.LongL3x3TwoHundredAndSeventyDegree;
+            case BlockType.Z5T16A180:
+                rotatedBlockType = BlockType.Z5T16A270;
                 break;
-            case BlockType.LongL3x3TwoHundredAndSeventyDegree:
-                rotatedBlockType = BlockType.LongL3x3ZeroDegree;
+            case BlockType.Z5T16A270:
+                rotatedBlockType = BlockType.Z5T16A0;
                 break;
-            case BlockType.ShortT2x3ZeroDegree:
-                rotatedBlockType = BlockType.ShortT3x2NintyDegree;
+            case BlockType.Z4T03A0:
+                rotatedBlockType = BlockType.Z4T03A90;
                 break;
-            case BlockType.ShortT3x2NintyDegree:
-                rotatedBlockType = BlockType.ShortT2x3HundredAndEightyDegree;
+            case BlockType.Z4T03A90:
+                rotatedBlockType = BlockType.Z4T03A180;
                 break;
-            case BlockType.ShortT2x3HundredAndEightyDegree:
-                rotatedBlockType = BlockType.ShortT3x2TwoHundredAndSeventyDegree;
+            case BlockType.Z4T03A180:
+                rotatedBlockType = BlockType.Z4T03A270;
                 break;
-            case BlockType.ShortT3x2TwoHundredAndSeventyDegree:
-                rotatedBlockType = BlockType.ShortT2x3ZeroDegree;
+            case BlockType.Z4T03A270:
+                rotatedBlockType = BlockType.Z4T03A0;
                 break;
-            case BlockType.Shorth2x3ZeroDegree:
-                rotatedBlockType = BlockType.Shorth3x2NintyDegree;
+            case BlockType.Z4T05A0:
+                rotatedBlockType = BlockType.Z4T05A90;
                 break;
-            case BlockType.Shorth3x2NintyDegree:
-                rotatedBlockType = BlockType.Shorth2x3ZeroDegree;
+            case BlockType.Z4T05A90:
+                rotatedBlockType = BlockType.Z4T05A0;
                 break;
-            case BlockType.Shorth2x3HundredAndEightyDegree:
-                rotatedBlockType = BlockType.Shorth3x2TwoHundredAndSeventyDegree;
+            case BlockType.Z4T06A0:
+                rotatedBlockType = BlockType.Z4T06A90;
                 break;
-            case BlockType.Shorth3x2TwoHundredAndSeventyDegree:
-                rotatedBlockType = BlockType.Shorth2x3HundredAndEightyDegree;
+            case BlockType.Z4T06A90:
+                rotatedBlockType = BlockType.Z4T06A0;
                 break;
-            case BlockType.LongT3x3ZeroDegree:
-                rotatedBlockType = BlockType.LongT3x3NintyDegree;
+            case BlockType.Z5T09A0:
+                rotatedBlockType = BlockType.Z5T09A90;
                 break;
-            case BlockType.LongT3x3NintyDegree:
-                rotatedBlockType = BlockType.LongT3x3HundredAndEightyDegree;
+            case BlockType.Z5T09A90:
+                rotatedBlockType = BlockType.Z5T09A180;
                 break;
-            case BlockType.LongT3x3HundredAndEightyDegree:
-                rotatedBlockType = BlockType.LongT3x3TwoHundredAndSeventyDegree;
+            case BlockType.Z5T09A180:
+                rotatedBlockType = BlockType.Z5T09A270;
                 break;
-            case BlockType.LongT3x3TwoHundredAndSeventyDegree:
-                rotatedBlockType = BlockType.LongT3x3ZeroDegree;
+            case BlockType.Z5T09A270:
+                rotatedBlockType = BlockType.Z5T09A0;
                 break;
-            case BlockType.Cross2x2ZeroDegree:
-                rotatedBlockType = BlockType.Cross2x2HundredAndEightyDegree;
+            case BlockType.Z2T02A0:
+                rotatedBlockType = BlockType.Z2T02A90;
                 break;
-            case BlockType.Cross2x2HundredAndEightyDegree:
-                rotatedBlockType = BlockType.Cross2x2ZeroDegree;
+            case BlockType.Z2T02A90:
+                rotatedBlockType = BlockType.Z2T02A0;
                 break;
-            case BlockType.MidL3x3ZeroDegree:
-                rotatedBlockType = BlockType.MidL3x3NintyDegree;
+            case BlockType.Z4T04A0:
+                rotatedBlockType = BlockType.Z4T04A90;
                 break;
-            case BlockType.MidL3x3NintyDegree:
-                rotatedBlockType = BlockType.MidL3x3HundredAndEightyDegree;
+            case BlockType.Z4T04A90:
+                rotatedBlockType = BlockType.Z4T04A180;
                 break;
-            case BlockType.MidL3x3HundredAndEightyDegree:
-                rotatedBlockType = BlockType.MidL3x3TwoHundredAndSeventyDegree;
+            case BlockType.Z4T04A180:
+                rotatedBlockType = BlockType.Z4T04A270;
                 break;
-            case BlockType.MidL3x3TwoHundredAndSeventyDegree:
-                rotatedBlockType = BlockType.MidL3x3ZeroDegree;
+            case BlockType.Z4T04A270:
+                rotatedBlockType = BlockType.Z4T04A0;
                 break;
-            case BlockType.Mid2L3x3ZeroDegree:
-                rotatedBlockType = BlockType.Mid2L3x3NintyDegree;
+            case BlockType.Z4T02A0:
+                rotatedBlockType = BlockType.Z4T02A90;
                 break;
-            case BlockType.Mid2L3x3NintyDegree:
-                rotatedBlockType = BlockType.Mid2L3x3HundredAndEightyDegree;
+            case BlockType.Z4T02A90:
+                rotatedBlockType = BlockType.Z4T02A180;
                 break;
-            case BlockType.Mid2L3x3HundredAndEightyDegree:
-                rotatedBlockType = BlockType.Mid2L3x3TwoHundredAndSeventyDegree;
+            case BlockType.Z4T02A180:
+                rotatedBlockType = BlockType.Z4T02A270;
                 break;
-            case BlockType.Mid2L3x3TwoHundredAndSeventyDegree:
-                rotatedBlockType = BlockType.Mid2L3x3ZeroDegree;
+            case BlockType.Z4T02A270:
+                rotatedBlockType = BlockType.Z4T02A0;
                 break;
             case BlockType.Z5T02A0:
                 rotatedBlockType = BlockType.Z5T02A90;
@@ -404,7 +467,7 @@ public class BlockManager : Singleton<BlockManager>
     /// <returns></returns>
     public Block getBlockByBlockType(BlockType blockType)
     {
-        foreach (Block block in BlockManager.Instance.AvailableBlocks)
+        foreach (Block block in BlockManager.Instance.CurAvailableBlocks)
         {
             if (block.BlockType.Equals(blockType))
             {
